@@ -94,16 +94,21 @@
       margin-top: 64px;
       background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, #4dd6ef 100%);
       color: var(--white);
-      padding: 5rem 1.5rem 4rem;
-      text-align: center;
+      padding: 4rem 1.5rem 5rem;
       position: relative; overflow: hidden;
     }
-    #hero::before {
+    #hero::after {
       content: '';
       position: absolute; bottom: -40px; left: 0; right: 0; height: 80px;
-      background: var(--white);
+      background: var(--bg-soft);
       clip-path: ellipse(55% 100% at 50% 100%);
     }
+    .hero-inner {
+      max-width: 960px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 420px;
+      gap: 2rem; align-items: center;
+    }
+    .hero-text { position: relative; z-index: 1; }
     .hero-badge {
       display: inline-block;
       background: rgba(255,255,255,0.2);
@@ -115,16 +120,27 @@
       letter-spacing: 0.05em;
     }
     #hero h1 {
-      font-size: clamp(1.75rem, 5vw, 2.75rem);
+      font-size: clamp(1.75rem, 4vw, 2.6rem);
       font-weight: 700; line-height: 1.4;
       margin-bottom: 1rem;
     }
     #hero h1 em { font-style: normal; color: #b2ecf7; }
     #hero p {
-      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-      opacity: 0.92; max-width: 520px; margin: 0 auto 2rem;
+      font-size: clamp(0.95rem, 2vw, 1.05rem);
+      opacity: 0.92; margin-bottom: 2rem;
     }
-    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; padding-bottom: 3rem; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; padding-bottom: 1rem; }
+    .hero-photo {
+      position: relative; z-index: 1;
+      border-radius: 24px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      aspect-ratio: 3/4;
+    }
+    .hero-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      display: block;
+    }
     .btn {
       display: inline-block; text-decoration: none;
       padding: 0.8rem 2rem; border-radius: 999px;
@@ -177,11 +193,24 @@
       gap: 3rem; align-items: center;
     }
     .about-img-wrap {
-      background: linear-gradient(135deg, var(--primary-light), var(--bg-soft));
       border-radius: var(--radius);
-      aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
-      font-size: 6rem;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      box-shadow: var(--shadow-card);
     }
+    .about-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      display: block;
+    }
+    .profile-avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%; overflow: hidden;
+      border: 3px solid var(--primary-light);
+      box-shadow: var(--shadow-card);
+      margin-bottom: 1rem;
+    }
+    .profile-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
     .about-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
     .tag {
       background: var(--primary-light); color: var(--primary-dark);
@@ -341,8 +370,12 @@
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-photo { max-width: 320px; margin: 0 auto; aspect-ratio: 4/3; }
+      .hero-text { text-align: center; }
+      .hero-btns { justify-content: center; }
       .about-inner { grid-template-columns: 1fr; }
-      .about-img-wrap { max-width: 200px; margin: 0 auto; }
+      .about-img-wrap { max-width: 260px; margin: 0 auto; aspect-ratio: 3/4; }
       .flow-steps { grid-template-columns: 1fr; }
       .flow-step:not(:last-child)::after { content: '↓'; right: 50%; top: auto; bottom: -1rem; transform: translateX(50%); }
       .flow-step { padding-bottom: 2rem; }
@@ -385,12 +418,19 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-badge">オンライン秘書サービス</div>
-  <h1>あなたの業務を<em>まるっと</em>サポート</h1>
-  <p>秘書・経理・営業支援・Web業務まで。<br>事務歴8年のオンライン秘書が、リモートで安心サポートします。</p>
-  <div class="hero-btns">
-    <a href="#contact" class="btn btn-white">無料でお問い合わせ</a>
-    <a href="#services" class="btn btn-outline">サービスを見る</a>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">オンライン秘書サービス</div>
+      <h1>あなたの業務を<em>まるっと</em>サポート</h1>
+      <p>秘書・経理・営業支援・Web業務まで。<br>事務歴8年のオンライン秘書が、リモートで安心サポートします。</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-white">無料でお問い合わせ</a>
+        <a href="#services" class="btn btn-outline">サービスを見る</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="images/hero.jpg" alt="オンライン秘書 我那覇美咲">
+    </div>
   </div>
 </section>
 
@@ -418,9 +458,14 @@
 <section id="about">
   <div class="container">
     <div class="about-inner">
-      <div class="about-img-wrap" aria-hidden="true">🌺</div>
+      <div class="about-img-wrap">
+        <img src="images/about.jpg" alt="我那覇美咲 カフェでPCを使って作業中">
+      </div>
       <div>
         <p class="section-label">Profile</p>
+        <div class="profile-avatar">
+          <img src="images/profile.jpg" alt="我那覇美咲">
+        </div>
         <h2>我那覇 美咲<br><small style="font-size:1rem;font-weight:500;color:var(--text-light);">Misaki Ganaha</small></h2>
         <p style="margin-bottom:1rem;font-size:0.93rem;color:var(--text-light);">
           沖縄生まれ沖縄育ち、30歳。銀行員2年・建設業総務6年・オンライン秘書3年目の<strong>合計8年の事務経験</strong>を持つフリーランスオンライン秘書です。
