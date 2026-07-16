@@ -319,10 +319,57 @@
 
     /* ===== PRICING ===== */
     #pricing { background: var(--white); }
+    .trial-wrap {
+      max-width: 380px; margin: 0 auto 2.5rem;
+    }
+    .pricing-sub {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.1rem; font-weight: 700;
+      text-align: center; color: var(--brown);
+      margin-bottom: 1.5rem;
+    }
+    .pricing-sub span {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.82rem; font-weight: 500; color: var(--brown-light);
+    }
     .pricing-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
+      display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 1.25rem;
     }
+    .price-row {
+      text-align: left;
+      padding: 0.75rem 0.9rem;
+      background: var(--white); border-radius: var(--radius-sm);
+      margin-top: 0.75rem;
+      border: 1px solid var(--beige-deeper);
+    }
+    .price-row.lump {
+      background: #fff4f0;
+      border-color: rgba(196,113,74,0.35);
+    }
+    .price-row-label {
+      display: block;
+      font-size: 0.75rem; font-weight: 700; color: var(--brown-light);
+      margin-bottom: 0.2rem;
+    }
+    .off-badge {
+      display: inline-block;
+      background: var(--terra); color: var(--white);
+      font-size: 0.68rem; font-weight: 700;
+      padding: 0.05rem 0.5rem; border-radius: 999px;
+      margin-left: 0.3rem; vertical-align: 1px;
+    }
+    .price-row-strike {
+      display: inline-block;
+      font-size: 0.8rem; color: var(--brown-light);
+      text-decoration: line-through;
+      margin-right: 0.5rem;
+    }
+    .price-row-value {
+      font-size: 1.15rem; font-weight: 700; color: var(--brown);
+    }
+    .price-row-value small { font-size: 0.72rem; font-weight: 500; color: var(--brown-light); }
+    .price-row-value.terra { color: var(--terra); }
     .price-card {
       border-radius: var(--radius);
       border: 2px solid var(--beige-deeper);
@@ -507,7 +554,7 @@
       }
       .service-card.featured .service-header { grid-column: auto; }
       .featured-lists { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
       .testimonials-grid { grid-template-columns: 1fr; }
       .flow-steps {
         grid-template-columns: 1fr;
@@ -708,42 +755,69 @@
       <h2 class="section-ja">料金プラン</h2>
       <div class="divider"></div>
     </div>
-    <div class="pricing-grid">
-      <div class="price-card trial fade-up">
+
+    <!-- お試しプラン -->
+    <div class="trial-wrap fade-up">
+      <div class="price-card trial">
         <span class="trial-badge">まずはここから</span>
         <p class="price-plan">お試しプラン</p>
         <div class="price-hours">10<span>時間</span></div>
         <div class="price-amount">¥22,000</div>
-        <div class="price-tax">税込（税抜 ¥20,000）</div>
-        <div class="price-per">@ 2,200円 / h</div>
-      </div>
-      <div class="price-card fade-up">
-        <p class="price-plan">通常プラン A</p>
-        <div class="price-hours">10<span>時間</span></div>
-        <div class="price-amount">¥27,500</div>
-        <div class="price-tax">税込（税抜 ¥25,000）</div>
-        <div class="price-per">@ 2,750円 / h</div>
-      </div>
-      <div class="price-card fade-up">
-        <p class="price-plan">通常プラン B</p>
-        <div class="price-hours">20<span>時間</span></div>
-        <div class="price-amount">¥55,000</div>
-        <div class="price-tax">税込（税抜 ¥50,000）</div>
-        <div class="price-per">@ 2,750円 / h</div>
-      </div>
-      <div class="price-card fade-up">
-        <p class="price-plan">通常プラン C</p>
-        <div class="price-hours">30<span>時間</span></div>
-        <div class="price-amount">¥82,500</div>
-        <div class="price-tax">税込（税抜 ¥75,000）</div>
-        <div class="price-per">@ 2,750円 / h</div>
+        <div class="price-tax">税込 ・ @2,200円/h</div>
+        <div class="price-per">月払いのみ</div>
       </div>
     </div>
+
+    <!-- 月額プラン -->
+    <p class="pricing-sub fade-up">月額プラン<span>（月払い ・ 6ヶ月一括）</span></p>
+    <div class="pricing-grid">
+      <div class="price-card fade-up">
+        <p class="price-plan">10時間プラン</p>
+        <div class="price-hours">10<span>時間/月</span></div>
+        <div class="price-row">
+          <span class="price-row-label">月払い</span>
+          <span class="price-row-value">¥27,500<small>/月（税込）</small></span>
+        </div>
+        <div class="price-row lump">
+          <span class="price-row-label">6ヶ月一括 <span class="off-badge">10%OFF</span></span>
+          <span class="price-row-strike">¥165,000</span>
+          <span class="price-row-value terra">¥148,500<small>（税込）</small></span>
+        </div>
+      </div>
+      <div class="price-card fade-up">
+        <p class="price-plan">20時間プラン</p>
+        <div class="price-hours">20<span>時間/月</span></div>
+        <div class="price-row">
+          <span class="price-row-label">月払い</span>
+          <span class="price-row-value">¥55,000<small>/月（税込）</small></span>
+        </div>
+        <div class="price-row lump">
+          <span class="price-row-label">6ヶ月一括 <span class="off-badge">10%OFF</span></span>
+          <span class="price-row-strike">¥330,000</span>
+          <span class="price-row-value terra">¥297,000<small>（税込）</small></span>
+        </div>
+      </div>
+      <div class="price-card fade-up">
+        <p class="price-plan">30時間プラン</p>
+        <div class="price-hours">30<span>時間/月</span></div>
+        <div class="price-row">
+          <span class="price-row-label">月払い</span>
+          <span class="price-row-value">¥82,500<small>/月（税込）</small></span>
+        </div>
+        <div class="price-row lump">
+          <span class="price-row-label">6ヶ月一括 <span class="off-badge">10%OFF</span></span>
+          <span class="price-row-strike">¥495,000</span>
+          <span class="price-row-value terra">¥445,500<small>（税込）</small></span>
+        </div>
+      </div>
+    </div>
+
     <div class="pricing-notes fade-up">
       <ul>
         <li>スポットでのご対応も可能です。まずはご相談ください。</li>
         <li>前払いでのお支払いをお願いしています。</li>
         <li>時間が超えそうな場合は事前にご相談します。</li>
+        <li>6ヶ月一括払いは<strong>10%OFF</strong>でお得です。</li>
       </ul>
     </div>
   </div>
