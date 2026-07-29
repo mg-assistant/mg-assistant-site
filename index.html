@@ -381,10 +381,16 @@
     }
     .price-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
     .price-card.trial {
+      background: var(--white);
+      border-color: var(--beige-deeper);
+    }
+    .price-card.featured {
       background: linear-gradient(160deg, #fff4f0, #fff8f5);
       border-color: var(--terra);
       box-shadow: 0 4px 20px rgba(196,113,74,0.15);
+      transform: scale(1.03);
     }
+    .price-card.featured:hover { transform: scale(1.03) translateY(-5px); }
     .trial-badge {
       position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
       background: var(--terra); color: var(--white);
@@ -396,7 +402,7 @@
       font-size: 0.85rem; font-weight: 700; letter-spacing: 0.05em;
       color: var(--brown-light); margin-bottom: 0.75rem;
     }
-    .price-card.trial .price-plan { color: var(--terra); }
+    .price-card.featured .price-plan { color: var(--terra); }
     .price-hours {
       font-family: 'Noto Serif JP', serif;
       font-size: 2.8rem; font-weight: 700;
@@ -555,6 +561,8 @@
       .service-card.featured .service-header { grid-column: auto; }
       .featured-lists { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .price-card.featured { transform: none; }
+      .price-card.featured:hover { transform: translateY(-5px); }
       .testimonials-grid { grid-template-columns: 1fr; }
       .flow-steps {
         grid-template-columns: 1fr;
@@ -764,7 +772,7 @@
         <div class="price-hours">10<span>時間</span></div>
         <div class="price-amount">¥22,000</div>
         <div class="price-tax">税込 ・ @2,200円/h</div>
-        <div class="price-per">月払いのみ</div>
+        <div class="price-per">月払いのみ・一括なし</div>
       </div>
     </div>
 
@@ -772,20 +780,21 @@
     <p class="pricing-sub fade-up">月額プラン<span>（月払い ・ 6ヶ月一括）</span></p>
     <div class="pricing-grid">
       <div class="price-card fade-up">
-        <p class="price-plan">10時間プラン</p>
-        <div class="price-hours">10<span>時間/月</span></div>
+        <p class="price-plan">プロプラン</p>
+        <div class="price-hours">30<span>時間/月</span></div>
         <div class="price-row">
           <span class="price-row-label">月払い</span>
-          <span class="price-row-value">¥27,500<small>/月（税込）</small></span>
+          <span class="price-row-value">¥82,500<small>/月（税込）</small></span>
         </div>
         <div class="price-row lump">
-          <span class="price-row-label">6ヶ月一括 <span class="off-badge">5%OFF</span></span>
-          <span class="price-row-strike">¥165,000</span>
-          <span class="price-row-value terra">¥156,750<small>（税込）</small></span>
+          <span class="price-row-label">6ヶ月一括 <span class="off-badge">10%OFF</span></span>
+          <span class="price-row-strike">¥495,000</span>
+          <span class="price-row-value terra">¥445,500<small>（税込）</small></span>
         </div>
       </div>
-      <div class="price-card fade-up">
-        <p class="price-plan">20時間プラン</p>
+      <div class="price-card featured fade-up">
+        <span class="trial-badge">★ おすすめ</span>
+        <p class="price-plan">スタンダードプラン</p>
         <div class="price-hours">20<span>時間/月</span></div>
         <div class="price-row">
           <span class="price-row-label">月払い</span>
@@ -798,23 +807,23 @@
         </div>
       </div>
       <div class="price-card fade-up">
-        <p class="price-plan">30時間プラン</p>
-        <div class="price-hours">30<span>時間/月</span></div>
+        <p class="price-plan">ライトプラン</p>
+        <div class="price-hours">10<span>時間/月</span></div>
         <div class="price-row">
           <span class="price-row-label">月払い</span>
-          <span class="price-row-value">¥82,500<small>/月（税込）</small></span>
+          <span class="price-row-value">¥33,000<small>/月（税込）</small></span>
         </div>
         <div class="price-row lump">
-          <span class="price-row-label">6ヶ月一括 <span class="off-badge">15%OFF</span></span>
-          <span class="price-row-strike">¥495,000</span>
-          <span class="price-row-value terra">¥420,750<small>（税込）</small></span>
+          <span class="price-row-label">6ヶ月一括 <span class="off-badge">5%OFF</span></span>
+          <span class="price-row-strike">¥198,000</span>
+          <span class="price-row-value terra">¥188,100<small>（税込）</small></span>
         </div>
       </div>
     </div>
 
     <div class="pricing-notes fade-up">
       <ul>
-        <li>スポットでのご対応も可能です。まずはご相談ください。</li>
+        <li>スポットでのご対応も可能です（1時間3,000円）。</li>
         <li>前払いでのお支払いをお願いしています。</li>
         <li>時間が超えそうな場合は事前にご相談します。</li>
         <li><strong>まとめてご契約いただくほどお得</strong>になります。</li>
