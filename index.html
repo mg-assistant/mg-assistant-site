@@ -467,6 +467,79 @@
     }
     .flow-step p { font-size: 0.78rem; color: var(--brown-light); }
 
+    /* ===== RESULTS ===== */
+    #results { background: var(--beige); }
+    .results-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    .result-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.6rem;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      display: flex; flex-direction: column;
+    }
+    .result-card.wide { grid-column: span 2; }
+    .result-top {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .result-industry {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--brown);
+    }
+    .result-status {
+      display: inline-block;
+      background: var(--beige-dark); color: var(--brown-light);
+      font-size: 0.72rem; font-weight: 700;
+      padding: 0.2rem 0.8rem; border-radius: 999px;
+      white-space: nowrap;
+    }
+    .result-status.active {
+      background: var(--terra); color: var(--white);
+    }
+    .result-period {
+      font-size: 0.8rem; color: var(--brown-light);
+      margin-bottom: 1rem;
+    }
+    .result-tags {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+    .result-tag {
+      background: var(--beige); color: var(--brown-light);
+      font-size: 0.72rem; font-weight: 600;
+      padding: 0.2rem 0.7rem; border-radius: 999px;
+      border: 1px solid var(--beige-deeper);
+    }
+    .result-block { margin-bottom: 1rem; }
+    .result-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em;
+      color: var(--terra); margin-bottom: 0.3rem;
+    }
+    .result-text {
+      font-size: 0.85rem; color: var(--brown-light);
+      line-height: 1.8;
+    }
+    .result-highlight {
+      margin-top: auto; padding-top: 1rem;
+      border-top: 1px dashed var(--beige-deeper);
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--terra);
+      text-align: center;
+    }
+    .results-note {
+      text-align: center; margin-top: 2.5rem;
+    }
+    .results-note p {
+      font-size: 0.9rem; color: var(--brown-light);
+      margin-bottom: 1rem;
+    }
+
     /* ===== TESTIMONIALS ===== */
     #testimonials { background: var(--white); }
     .testimonials-grid {
@@ -523,6 +596,7 @@
     .sns-btn i { font-size: 1.2rem; }
     .sns-btn.instagram i { color: #E1306C; }
     .sns-btn.threads i { color: #000; }
+    .sns-btn.note i { color: #41c9b4; }
 
     /* ===== CONTACT ===== */
     #contact {
@@ -564,6 +638,8 @@
       .price-card.featured { transform: none; }
       .price-card.featured:hover { transform: translateY(-5px); }
       .testimonials-grid { grid-template-columns: 1fr; }
+      .results-grid { grid-template-columns: 1fr; }
+      .result-card.wide { grid-column: span 1; }
       .flow-steps {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -595,6 +671,7 @@
     <li><a href="#services">サービス</a></li>
     <li><a href="#pricing">料金</a></li>
     <li><a href="#flow">ご依頼の流れ</a></li>
+    <li><a href="#results">実績</a></li>
     <li><a href="#contact" class="nav-cta">お問い合わせ</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="メニューを開く">
@@ -608,6 +685,7 @@
   <a href="#services" onclick="closeMobile()">サービス</a>
   <a href="#pricing" onclick="closeMobile()">料金</a>
   <a href="#flow" onclick="closeMobile()">ご依頼の流れ</a>
+  <a href="#results" onclick="closeMobile()">実績</a>
   <a href="#contact" class="nav-cta" onclick="closeMobile()">お問い合わせ</a>
 </div>
 
@@ -870,6 +948,140 @@
   </div>
 </section>
 
+<!-- ===== RESULTS ===== -->
+<section id="results">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-en">Results</span>
+      <h2 class="section-ja">サービス実績</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="results-grid">
+      <div class="result-card fade-up">
+        <div class="result-top">
+          <span class="result-industry">🏗️ 建設業・工務店</span>
+          <span class="result-status active">継続中</span>
+        </div>
+        <p class="result-period">サポート期間：<strong style="color:var(--terra);">3年以上</strong></p>
+        <div class="result-tags">
+          <span class="result-tag">記帳代行</span>
+          <span class="result-tag">給与計算</span>
+          <span class="result-tag">安全書類</span>
+          <span class="result-tag">見積書</span>
+          <span class="result-tag">秘書業務</span>
+        </div>
+        <div class="result-block">
+          <p class="result-label">課題</p>
+          <p class="result-text">起業間もないタイミングで経理体制が未整備。帳簿や数字の管理が十分にできていない状態でした。</p>
+        </div>
+        <div class="result-block">
+          <p class="result-label">成果</p>
+          <p class="result-text">経理業務を一から整備し、税理士連携も代行。建設業特有の事務から秘書業務まで幅広くサポート。社長が本業に集中できる環境を実現。</p>
+        </div>
+        <div class="result-highlight">サポート<span style="color:var(--terra);">3年以上</span>・継続中</div>
+      </div>
+
+      <div class="result-card fade-up">
+        <div class="result-top">
+          <span class="result-industry">⚡ 電気工事業</span>
+          <span class="result-status active">継続中</span>
+        </div>
+        <p class="result-period">サポート期間：<strong style="color:var(--terra);">継続中</strong></p>
+        <div class="result-tags">
+          <span class="result-tag">安全書類</span>
+          <span class="result-tag">グリーンサイト</span>
+          <span class="result-tag">CCUS</span>
+          <span class="result-tag">記帳代行</span>
+          <span class="result-tag">給与計算</span>
+        </div>
+        <div class="result-block">
+          <p class="result-label">課題</p>
+          <p class="result-text">事務員がおらず、社長自身が安全書類・経理・給与計算をすべて対応。本業に集中できない状態でした。</p>
+        </div>
+        <div class="result-block">
+          <p class="result-label">成果</p>
+          <p class="result-text">建設業特有の事務・経理業務を丸ごと代行。社長の事務作業を月約10時間削減し、現場・営業に集中できる環境を実現。</p>
+        </div>
+        <div class="result-highlight">月約<span style="color:var(--terra);">10時間</span>削減</div>
+      </div>
+
+      <div class="result-card fade-up">
+        <div class="result-top">
+          <span class="result-industry">🏥 訪問歯科医院</span>
+          <span class="result-status">サポート期間：約3年</span>
+        </div>
+        <div class="result-tags">
+          <span class="result-tag">請求書作成</span>
+          <span class="result-tag">入金管理</span>
+          <span class="result-tag">請求業務全般</span>
+        </div>
+        <div class="result-block">
+          <p class="result-label">課題</p>
+          <p class="result-text">院長先生が毎月100件以上の請求書作成・入金管理を自身で対応。診療や事業運営に十分な時間を確保できない状況でした。</p>
+        </div>
+        <div class="result-block">
+          <p class="result-label">成果</p>
+          <p class="result-text">請求書作成から入金管理まで一連の業務を代行。院長先生が診療・事業運営に集中できる環境を実現。</p>
+        </div>
+        <div class="result-highlight">月<span style="color:var(--terra);">100件以上</span>の請求書を代行</div>
+      </div>
+
+      <div class="result-card fade-up">
+        <div class="result-top">
+          <span class="result-industry">💼 オンライン秘書チーム</span>
+          <span class="result-status active">継続中</span>
+        </div>
+        <p class="result-period">サポート期間：<strong style="color:var(--terra);">継続中</strong></p>
+        <div class="result-tags">
+          <span class="result-tag">記帳代行</span>
+          <span class="result-tag">請求書管理</span>
+          <span class="result-tag">営業リスト作成</span>
+          <span class="result-tag">メール代行</span>
+          <span class="result-tag">リサーチ</span>
+        </div>
+        <div class="result-block">
+          <p class="result-label">課題</p>
+          <p class="result-text">チームリーダーが経理・事務作業に時間を取られ、営業・マネジメントに集中できない状況でした。</p>
+        </div>
+        <div class="result-block">
+          <p class="result-label">成果</p>
+          <p class="result-text">経理・バックオフィス業務を一括代行。リーダーが本来注力すべき営業・チーム運営に集中できる体制を整備。</p>
+        </div>
+        <div class="result-highlight">バックオフィス業務を<span style="color:var(--terra);">丸ごと代行</span></div>
+      </div>
+
+      <div class="result-card wide fade-up">
+        <div class="result-top">
+          <span class="result-industry">🏗️ 建築業</span>
+          <span class="result-status">サポート終了</span>
+        </div>
+        <p class="result-period">サポート期間：継続サポート後終了</p>
+        <div class="result-tags">
+          <span class="result-tag">記帳代行</span>
+          <span class="result-tag">請求書管理</span>
+          <span class="result-tag">入金管理</span>
+          <span class="result-tag">Lark導入</span>
+          <span class="result-tag">メール対応</span>
+        </div>
+        <div class="result-block">
+          <p class="result-label">課題</p>
+          <p class="result-text">起業1年目で請求書・入金管理の運用ルールが未整備。請求漏れ・対応漏れのリスクがある状態でした。</p>
+        </div>
+        <div class="result-block">
+          <p class="result-label">成果</p>
+          <p class="result-text">Larkを導入し、入金管理・タスク管理・工事進捗を一元化。請求漏れを防げる業務フローを構築。</p>
+        </div>
+        <div class="result-highlight"><span style="color:var(--terra);">Lark導入</span>で業務を一元管理</div>
+      </div>
+    </div>
+
+    <div class="results-note fade-up">
+      <p>業種別の詳しい実績はnoteで公開中です📝</p>
+      <a href="https://note.com/m_ganaha" target="_blank" rel="noopener noreferrer" class="btn btn-terra">noteで実績を見る</a>
+    </div>
+  </div>
+</section>
+
 <!-- ===== TESTIMONIALS ===== -->
 <section id="testimonials">
   <div class="container">
@@ -912,6 +1124,9 @@
         </a>
         <a href="https://www.threads.net/@mg_assistant" target="_blank" rel="noopener noreferrer" class="sns-btn threads">
           <i class="fa-brands fa-threads"></i> Threads
+        </a>
+        <a href="https://note.com/m_ganaha" target="_blank" rel="noopener noreferrer" class="sns-btn note">
+          <i class="fa-solid fa-note-sticky"></i> note
         </a>
       </div>
     </div>
