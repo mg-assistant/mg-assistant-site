@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "mg-assistant",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "-p", "3456", "."],
+      "runtimeExecutable": "/usr/local/bin/node",
+      "runtimeArgs": ["server.js"],
       "port": 3456
     }
   ]

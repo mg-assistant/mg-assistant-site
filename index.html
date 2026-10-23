@@ -3,1190 +3,857 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MGアシスタント | オンライン秘書サービス</title>
-  <meta name="description" content="沖縄在住・建設業経験あり。秘書・経理・営業支援・Web・建設業務まで幅広く対応するオンライン秘書サービス。">
+  <title>MGアシスタント | オンライン秘書・経理・建設業事務</title>
+  <meta name="description" content="沖縄在住のオンライン秘書「MGアシスタント」。一般事務・経理・建設業事務まで、AIも活用しながらリモートで安心サポートします。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script>document.documentElement.classList.add('js');</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --beige: #f5f0e8;
       --beige-dark: #ede5d6;
-      --beige-deeper: #e2d5c0;
+      --beige-line: #e2d5c0;
       --terra: #c4714a;
       --terra-dark: #a85c38;
-      --terra-light: #f0ddd4;
+      --terra-light: #f6e3d9;
+      --terra-pale: #fdf5f1;
       --brown: #3d2b1f;
       --brown-light: #6b4c3b;
       --white: #ffffff;
-      --radius: 16px;
-      --radius-sm: 10px;
-      --shadow: 0 4px 24px rgba(61,43,31,0.10);
-      --shadow-sm: 0 2px 12px rgba(61,43,31,0.08);
+      --line-green: #06c755;
+      --radius: 18px;
+      --radius-sm: 12px;
+      --shadow: 0 8px 28px rgba(61,43,31,0.10);
+      --shadow-sm: 0 3px 14px rgba(61,43,31,0.07);
+      --header-h: 64px;
     }
 
-    html { scroll-behavior: smooth; }
-
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body {
       font-family: 'Noto Sans JP', sans-serif;
       color: var(--brown);
       background: var(--beige);
-      line-height: 1.8;
+      line-height: 1.85;
+      font-size: 15px;
     }
+    h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    section { scroll-margin-top: var(--header-h); }
 
-    h1, h2, h3, .serif { font-family: 'Noto Serif JP', serif; }
+    /* ===== Fade-in ===== */
+    .js .fade-up { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .js .fade-up.visible { opacity: 1; transform: none; }
 
-    img { max-width: 100%; height: auto; display: block; }
-    a { text-decoration: none; color: inherit; }
-
-    /* ===== SCROLL ANIMATION ===== */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .fade-up:nth-child(2) { transition-delay: 0.1s; }
-    .fade-up:nth-child(3) { transition-delay: 0.2s; }
-    .fade-up:nth-child(4) { transition-delay: 0.3s; }
-    .fade-up:nth-child(5) { transition-delay: 0.35s; }
-
-    /* ===== NAV ===== */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      background: rgba(245,240,232,0.96);
+    /* ===== Header ===== */
+    .header {
+      position: fixed; inset: 0 0 auto 0; z-index: 100;
+      height: var(--header-h);
+      background: rgba(245,240,232,0.95);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--beige-deeper);
-      height: 64px;
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--beige-line);
+    }
+    .header-inner {
+      max-width: 1120px; height: 100%; margin: 0 auto; padding: 0 20px;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2rem;
     }
-    .nav-logo {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 1.15rem; font-weight: 700;
-      color: var(--brown);
-      letter-spacing: 0.04em;
+    .logo { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 1.15rem; letter-spacing: .04em; }
+    .logo span { color: var(--terra); }
+    .nav { display: flex; align-items: center; gap: 22px; }
+    .nav a { font-size: .85rem; font-weight: 500; color: var(--brown-light); transition: color .2s; }
+    .nav a:hover { color: var(--terra); }
+    .nav .nav-cta {
+      background: var(--terra); color: var(--white);
+      padding: 8px 18px; border-radius: 999px;
     }
-    .nav-logo span { color: var(--terra); }
-    .nav-links {
-      display: flex; gap: 1.75rem; list-style: none;
-    }
-    .nav-links a {
-      font-size: 0.85rem; font-weight: 500; color: var(--brown-light);
-      transition: color 0.2s;
-      white-space: nowrap;
-    }
-    .nav-links a:hover { color: var(--terra); }
-    .nav-cta {
-      background: var(--terra) !important;
-      color: var(--white) !important;
-      padding: 0.4rem 1.1rem !important;
-      border-radius: 999px;
-      transition: background 0.2s !important;
-    }
-    .nav-cta:hover { background: var(--terra-dark) !important; }
-
-    /* hamburger */
+    .nav .nav-cta:hover { background: var(--terra-dark); color: var(--white); }
     .hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      cursor: pointer; background: none; border: none; padding: 4px;
+      display: none; width: 44px; height: 44px; border: none; background: none; cursor: pointer;
+      flex-direction: column; justify-content: center; align-items: center; gap: 5px;
     }
-    .hamburger span {
-      display: block; width: 24px; height: 2px;
-      background: var(--brown); border-radius: 2px; transition: 0.3s;
-    }
-    .mobile-menu {
-      display: none; position: fixed; top: 64px; left: 0; right: 0;
-      background: var(--beige); padding: 1.5rem 2rem;
-      z-index: 199; box-shadow: var(--shadow);
-      flex-direction: column; gap: 0;
-      border-top: 1px solid var(--beige-deeper);
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      font-size: 0.95rem; font-weight: 500; color: var(--brown);
-      padding: 0.75rem 0; border-bottom: 1px solid var(--beige-deeper);
-    }
-    .mobile-menu a:last-child { border-bottom: none; }
-    .mobile-menu .nav-cta {
-      background: var(--terra) !important;
-      color: var(--white) !important;
-      text-align: center; border-radius: var(--radius-sm);
-      padding: 0.75rem !important; margin-top: 0.75rem;
-      border-bottom: none;
-    }
+    .hamburger span { width: 24px; height: 2px; background: var(--brown); border-radius: 2px; transition: transform .3s, opacity .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* ===== SECTION COMMON ===== */
-    section { padding: 5rem 1.5rem; }
-    .container { max-width: 1000px; margin: 0 auto; }
-    .section-header { text-align: center; margin-bottom: 3rem; }
-    .section-en {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.75rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--terra); margin-bottom: 0.5rem;
-      display: block;
+    /* ===== Common ===== */
+    .section { padding: 88px 20px; }
+    .section.alt { background: var(--white); }
+    .container { max-width: 1040px; margin: 0 auto; }
+    .section-head { text-align: center; margin-bottom: 44px; }
+    .label {
+      display: block; font-family: 'Noto Serif JP', serif;
+      font-size: .75rem; font-weight: 700; letter-spacing: .22em;
+      color: var(--terra); margin-bottom: 6px;
     }
-    .section-ja {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(1.4rem, 3vw, 1.9rem);
-      font-weight: 700; color: var(--brown);
-    }
-    .divider {
-      width: 40px; height: 3px;
-      background: var(--terra); border-radius: 2px;
-      margin: 0.75rem auto 0;
-    }
+    .section-title { font-size: clamp(1.4rem, 4.6vw, 1.9rem); font-weight: 700; }
+    .section-head .bar { width: 40px; height: 3px; background: var(--terra); border-radius: 2px; margin: 14px auto 0; }
+    .lead { max-width: 640px; margin: 18px auto 0; color: var(--brown-light); font-size: .95rem; }
 
     .btn {
-      display: inline-block; font-weight: 700;
-      padding: 0.85rem 2rem; border-radius: 999px;
-      font-size: 0.95rem; cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-      text-decoration: none;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 52px; padding: 0 30px; border-radius: 999px;
+      font-weight: 700; font-size: .95rem;
+      transition: transform .2s, box-shadow .2s, background .2s;
     }
     .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
     .btn-terra { background: var(--terra); color: var(--white); }
     .btn-terra:hover { background: var(--terra-dark); }
-    .btn-outline {
-      background: transparent; color: var(--terra);
-      border: 2px solid var(--terra);
-    }
-    .btn-outline:hover { background: var(--terra-light); }
-    .btn-white { background: var(--white); color: var(--terra); }
+    .btn-outline { border: 2px solid var(--terra); color: var(--terra); background: var(--white); }
+    .btn-line { background: var(--line-green); color: var(--white); }
+    .btn-line:hover { background: #05b04b; }
 
-    /* ===== HERO ===== */
-    #hero {
-      margin-top: 64px;
-      background: linear-gradient(160deg, var(--beige) 0%, var(--beige-dark) 50%, var(--beige-deeper) 100%);
-      padding: 5rem 1.5rem 6rem;
-      position: relative; overflow: hidden;
-      text-align: center;
+    .card {
+      background: var(--white); border-radius: var(--radius);
+      box-shadow: var(--shadow-sm); padding: 28px 24px;
     }
-    #hero::before {
-      content: '';
-      position: absolute; top: -60px; right: -60px;
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, var(--terra-light) 0%, transparent 70%);
-      opacity: 0.5;
-    }
-    #hero::after {
-      content: '';
-      position: absolute; bottom: -80px; left: 0; right: 0; height: 100px;
-      background: var(--white);
-      clip-path: ellipse(55% 100% at 50% 100%);
-    }
-    .hero-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
-    .hero-badge {
-      display: inline-block;
-      background: var(--terra-light); color: var(--terra);
-      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
-      padding: 0.3rem 1rem; border-radius: 999px;
-      margin-bottom: 1.5rem; border: 1px solid rgba(196,113,74,0.25);
-    }
-    #hero h1 {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(1.9rem, 5vw, 3rem);
-      font-weight: 700; line-height: 1.45;
-      color: var(--brown); margin-bottom: 1.25rem;
-    }
-    #hero h1 em { font-style: normal; color: var(--terra); }
-    #hero .hero-sub {
-      font-size: clamp(0.9rem, 2vw, 1rem);
-      color: var(--brown-light); margin-bottom: 2.5rem;
-      max-width: 500px; margin-left: auto; margin-right: auto;
-    }
-    .hero-btns {
-      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-      padding-bottom: 3rem;
-    }
+    .alt .card { background: var(--beige); box-shadow: none; border: 1px solid var(--beige-line); }
 
-    /* ===== PROFILE ===== */
-    #profile { background: var(--white); }
-    .profile-inner {
-      display: grid; grid-template-columns: 1fr 1.6fr;
-      gap: 3.5rem; align-items: center;
-    }
-    .profile-photo {
-      border-radius: 24px; overflow: hidden;
-      box-shadow: var(--shadow);
-      aspect-ratio: 3/4;
-    }
-    .profile-photo img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center 10%;
-    }
-    .profile-photo-placeholder {
-      width: 100%; height: 100%;
-      background: linear-gradient(135deg, var(--beige-dark), var(--beige-deeper));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 5rem;
-    }
-    .profile-name {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 1.6rem; font-weight: 700; margin-bottom: 0.25rem;
-    }
-    .profile-name-en { font-size: 0.85rem; color: var(--terra); font-weight: 500; margin-bottom: 1rem; }
-    .profile-desc { font-size: 0.93rem; color: var(--brown-light); margin-bottom: 1.25rem; }
-    .profile-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-    .tag {
-      background: var(--beige); color: var(--brown-light);
-      font-size: 0.78rem; font-weight: 700; padding: 0.3rem 0.8rem;
-      border-radius: 999px; border: 1px solid var(--beige-deeper);
-    }
-    .tag.terra { background: var(--terra-light); color: var(--terra); border-color: rgba(196,113,74,0.25); }
-    .profile-list { list-style: none; }
-    .profile-list li {
-      display: flex; gap: 0.6rem; align-items: flex-start;
-      padding: 0.45rem 0; border-bottom: 1px dashed var(--beige-deeper);
-      font-size: 0.92rem;
-    }
-    .profile-list li::before { content: '✦'; color: var(--terra); flex-shrink: 0; font-size: 0.7rem; margin-top: 0.4rem; }
-
-    /* ===== SERVICES ===== */
-    #services { background: var(--beige); }
-    .services-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1.25rem; margin-bottom: 1.25rem;
-    }
-    .services-row2 {
-      display: grid; grid-template-columns: repeat(3, 1fr) 1fr;
-      gap: 1.25rem;
-    }
-    .service-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 1.75rem 1.4rem;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-    .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
-    .service-card.featured {
-      background: linear-gradient(160deg, #fff8f5, var(--white));
-      border: 2px solid rgba(196,113,74,0.3);
-      grid-column: span 4;
-      display: grid; grid-template-columns: auto 1fr;
-      gap: 0 1.75rem; align-items: start;
-    }
-    .service-card.featured .service-header { grid-column: 1 / -1; }
-    .service-icon {
-      width: 48px; height: 48px;
-      background: var(--beige); border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.25rem; color: var(--terra);
-      margin-bottom: 1rem;
-    }
-    .service-card.featured .service-icon {
-      background: var(--terra-light); margin-bottom: 0;
-    }
-    .service-card h3 {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.97rem; font-weight: 700;
-      color: var(--brown); margin-bottom: 0.75rem;
-    }
-    .service-card.featured h3 { color: var(--terra); font-size: 1.05rem; }
-    .service-card ul { list-style: none; }
-    .service-card ul li {
-      font-size: 0.82rem; color: var(--brown-light);
-      padding: 0.2rem 0;
-      display: flex; gap: 0.4rem; align-items: flex-start;
-    }
-    .service-card ul li::before { content: '—'; color: var(--terra); opacity: 0.6; flex-shrink: 0; }
-    .featured-badge {
-      display: inline-block;
-      background: var(--terra); color: var(--white);
-      font-size: 0.7rem; font-weight: 700; padding: 0.15rem 0.7rem;
-      border-radius: 999px; margin-bottom: 0.75rem;
-      letter-spacing: 0.05em;
-    }
-    .featured-lists {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 0.25rem 2rem;
-    }
-    .service-note {
-      text-align: center; margin-top: 1.75rem;
-      padding: 1rem 1.5rem;
-      background: var(--beige-dark); border-radius: var(--radius-sm);
-      font-size: 0.88rem; color: var(--brown-light);
-    }
-    .service-note strong { color: var(--terra); }
-
-    /* ===== PRICING ===== */
-    #pricing { background: var(--white); }
-    .trial-wrap {
-      max-width: 380px; margin: 0 auto 2.5rem;
-    }
-    .pricing-sub {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 1.1rem; font-weight: 700;
-      text-align: center; color: var(--brown);
-      margin-bottom: 1.5rem;
-    }
-    .pricing-sub span {
-      font-family: 'Noto Sans JP', sans-serif;
-      font-size: 0.82rem; font-weight: 500; color: var(--brown-light);
-    }
-    .pricing-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-    }
-    .price-row {
-      text-align: left;
-      padding: 0.75rem 0.9rem;
-      background: var(--white); border-radius: var(--radius-sm);
-      margin-top: 0.75rem;
-      border: 1px solid var(--beige-deeper);
-    }
-    .price-row.lump {
-      background: #fff4f0;
-      border-color: rgba(196,113,74,0.35);
-    }
-    .price-row-label {
-      display: block;
-      font-size: 0.75rem; font-weight: 700; color: var(--brown-light);
-      margin-bottom: 0.2rem;
-    }
-    .off-badge {
-      display: inline-block;
-      background: var(--terra); color: var(--white);
-      font-size: 0.68rem; font-weight: 700;
-      padding: 0.05rem 0.5rem; border-radius: 999px;
-      margin-left: 0.3rem; vertical-align: 1px;
-    }
-    .price-row-strike {
-      display: inline-block;
-      font-size: 0.8rem; color: var(--brown-light);
-      text-decoration: line-through;
-      margin-right: 0.5rem;
-    }
-    .price-row-value {
-      font-size: 1.15rem; font-weight: 700; color: var(--brown);
-    }
-    .price-row-value small { font-size: 0.72rem; font-weight: 500; color: var(--brown-light); }
-    .price-row-value.terra { color: var(--terra); }
-    .price-card {
-      border-radius: var(--radius);
-      border: 2px solid var(--beige-deeper);
-      padding: 2rem 1.25rem;
-      text-align: center;
-      background: var(--beige);
-      transition: transform 0.25s, box-shadow 0.25s;
-      position: relative;
-    }
-    .price-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
-    .price-card.trial {
-      background: var(--white);
-      border-color: var(--beige-deeper);
-    }
-    .price-card.featured {
-      background: linear-gradient(160deg, #fff4f0, #fff8f5);
-      border-color: var(--terra);
-      box-shadow: 0 4px 20px rgba(196,113,74,0.15);
-      transform: scale(1.03);
-    }
-    .price-card.featured:hover { transform: scale(1.03) translateY(-5px); }
-    .trial-badge {
-      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-      background: var(--terra); color: var(--white);
-      font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.9rem;
-      border-radius: 999px; white-space: nowrap;
-    }
-    .price-plan {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.85rem; font-weight: 700; letter-spacing: 0.05em;
-      color: var(--brown-light); margin-bottom: 0.75rem;
-    }
-    .price-card.featured .price-plan { color: var(--terra); }
-    .price-hours {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 2.8rem; font-weight: 700;
-      color: var(--terra); line-height: 1;
-    }
-    .price-hours span { font-size: 1rem; }
-    .price-amount {
-      font-size: 1.4rem; font-weight: 700;
-      color: var(--brown); margin: 0.6rem 0 0.2rem;
-    }
-    .price-tax { font-size: 0.75rem; color: var(--brown-light); }
-    .price-per {
-      font-size: 0.78rem; color: var(--brown-light);
-      font-weight: 500; margin-top: 0.5rem;
-      padding-top: 0.75rem; border-top: 1px dashed var(--beige-deeper);
-    }
-    .pricing-notes {
-      margin-top: 2rem;
-      background: var(--beige); border-radius: var(--radius-sm);
-      padding: 1.25rem 1.5rem;
-    }
-    .pricing-notes ul { list-style: none; }
-    .pricing-notes ul li {
-      font-size: 0.875rem; color: var(--brown-light);
-      padding: 0.25rem 0; display: flex; gap: 0.5rem;
-    }
-    .pricing-notes ul li::before { content: '※'; color: var(--terra); flex-shrink: 0; }
-
-    /* ===== FLOW ===== */
-    #flow { background: var(--beige); }
-    .flow-steps {
-      display: grid; grid-template-columns: repeat(5, 1fr);
-      position: relative;
-      gap: 0;
-    }
-    .flow-steps::before {
-      content: '';
-      position: absolute;
-      top: 32px; left: 10%; right: 10%;
-      height: 2px;
-      background: linear-gradient(to right, var(--terra-light), var(--terra), var(--terra-light));
-      z-index: 0;
-    }
-    .flow-step {
-      text-align: center; padding: 0 0.5rem;
-      position: relative; z-index: 1;
-    }
-    .flow-num {
-      width: 64px; height: 64px;
-      background: var(--white); border: 3px solid var(--terra);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Noto Serif JP', serif;
-      font-size: 1.3rem; font-weight: 700; color: var(--terra);
-      margin: 0 auto 1rem;
-      box-shadow: var(--shadow-sm);
-    }
-    .flow-step h3 {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.85rem; font-weight: 700;
-      color: var(--brown); margin-bottom: 0.4rem;
-    }
-    .flow-step p { font-size: 0.78rem; color: var(--brown-light); }
-
-    /* ===== RESULTS ===== */
-    #results { background: var(--beige); }
-    .results-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-    }
-    .result-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 1.75rem 1.6rem;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-      display: flex; flex-direction: column;
-    }
-    .result-top {
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    .result-industry {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.95rem; font-weight: 700;
-      color: var(--brown);
-    }
-    .result-status {
-      display: inline-block;
+    .badge {
+      display: inline-block; font-size: .72rem; font-weight: 700;
+      padding: 3px 12px; border-radius: 999px; white-space: nowrap;
       background: var(--beige-dark); color: var(--brown-light);
-      font-size: 0.72rem; font-weight: 700;
-      padding: 0.2rem 0.8rem; border-radius: 999px;
-      white-space: nowrap;
     }
-    .result-status.active {
-      background: var(--terra); color: var(--white);
+    .badge.terra { background: var(--terra); color: var(--white); }
+
+    .tag {
+      display: inline-block; font-size: .75rem; font-weight: 500;
+      padding: 3px 11px; border-radius: 999px;
+      background: var(--beige); border: 1px solid var(--beige-line); color: var(--brown-light);
     }
-    .result-period {
-      font-size: 0.8rem; color: var(--brown-light);
-      margin-bottom: 1rem;
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .check-list { list-style: none; }
+    .check-list li { position: relative; padding: 5px 0 5px 22px; font-size: .9rem; }
+    .check-list li::before {
+      content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+      position: absolute; left: 0; top: 6px; font-size: .75rem; color: var(--terra);
     }
-    .result-tags {
-      display: flex; flex-wrap: wrap; gap: 0.4rem;
-      margin-bottom: 1.25rem;
+    .em { color: var(--terra); font-weight: 700; }
+    .tax { font-size: .75em; color: var(--brown-light); font-weight: 500; white-space: nowrap; }
+
+    /* ===== Hero ===== */
+    .hero {
+      padding: calc(var(--header-h) + 72px) 20px 96px;
+      text-align: center; position: relative; overflow: hidden;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(196,113,74,.12), transparent 45%),
+        radial-gradient(circle at 10% 90%, rgba(196,113,74,.08), transparent 40%),
+        linear-gradient(170deg, var(--beige) 0%, var(--beige-dark) 100%);
     }
-    .result-tag {
-      background: var(--beige); color: var(--brown-light);
-      font-size: 0.72rem; font-weight: 600;
-      padding: 0.2rem 0.7rem; border-radius: 999px;
-      border: 1px solid var(--beige-deeper);
+    .hero-badge {
+      display: inline-block; background: var(--terra-light); color: var(--terra);
+      font-size: .78rem; font-weight: 700; letter-spacing: .08em;
+      padding: 5px 16px; border-radius: 999px; margin-bottom: 22px;
     }
-    .result-block { margin-bottom: 1rem; }
-    .result-label {
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em;
-      color: var(--terra); margin-bottom: 0.3rem;
+    .hero h1 { font-size: clamp(1.85rem, 7vw, 3rem); font-weight: 700; margin-bottom: 20px; }
+    .hero h1 em { font-style: normal; color: var(--terra); }
+    .hero p { max-width: 560px; margin: 0 auto 36px; color: var(--brown-light); font-size: clamp(.92rem, 2.6vw, 1.02rem); }
+    .hero-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+
+    /* ===== Service ===== */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .service-card { position: relative; }
+    .service-card.featured { border: 2px solid var(--terra); background: var(--terra-pale); }
+    .service-card .badge { position: absolute; top: 20px; right: 20px; }
+    .icon-box {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: var(--terra-light); color: var(--terra);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; margin-bottom: 14px;
     }
-    .result-text {
-      font-size: 0.85rem; color: var(--brown-light);
-      line-height: 1.8;
-    }
-    .result-highlight {
-      margin-top: auto; padding-top: 1rem;
-      border-top: 1px dashed var(--beige-deeper);
-      font-size: 0.95rem; font-weight: 700;
-      color: var(--terra);
-      text-align: center;
-    }
-    .results-note {
-      text-align: center; margin-top: 2.5rem;
-    }
-    .results-note p {
-      font-size: 0.9rem; color: var(--brown-light);
-      margin-bottom: 1rem;
+    .service-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+    .note-line {
+      margin-top: 28px; text-align: center; padding: 16px 20px;
+      background: var(--beige-dark); border-radius: var(--radius-sm);
+      font-size: .9rem; color: var(--brown-light);
     }
 
-    /* ===== TESTIMONIALS ===== */
-    #testimonials { background: var(--white); }
-    .testimonials-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+    /* ===== AI ===== */
+    .ai-tools { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 20px; }
+    .ai-tools .tag { background: var(--white); font-weight: 700; color: var(--brown); padding: 5px 14px; }
+    .ai-card { text-align: center; }
+    .ai-card .icon-box { margin: 0 auto 14px; }
+    .ai-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .ai-card p { font-size: .88rem; color: var(--brown-light); text-align: left; }
+
+    /* ===== Works ===== */
+    .works-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .work-card { display: flex; flex-direction: column; }
+    .work-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .work-industry { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 1rem; }
+    .work-card .tags { margin-bottom: 16px; }
+    .work-block { margin-bottom: 12px; }
+    .work-label { font-size: .75rem; font-weight: 700; color: var(--terra); letter-spacing: .05em; }
+    .work-text { font-size: .88rem; color: var(--brown-light); }
+    .work-highlight {
+      margin-top: auto; padding-top: 14px; border-top: 1px dashed var(--beige-line);
+      text-align: center; font-weight: 700; font-size: .95rem;
     }
-    .testimonial-card {
-      background: var(--beige);
-      border-radius: var(--radius);
-      padding: 1.75rem 1.5rem;
-      box-shadow: var(--shadow-sm);
-      position: relative;
+    .center-cta { text-align: center; margin-top: 40px; }
+    .center-cta p { margin-bottom: 14px; color: var(--brown-light); font-size: .92rem; }
+
+    /* ===== Price ===== */
+    .trial {
+      max-width: 640px; margin: 0 auto 56px; text-align: center;
+      background: linear-gradient(160deg, var(--terra) 0%, var(--terra-dark) 100%);
+      color: var(--white); border-radius: 24px; padding: 40px 28px;
+      box-shadow: 0 12px 32px rgba(196,113,74,.28);
     }
-    .testimonial-card::before {
-      content: '\201C';
-      font-family: Georgia, serif;
-      font-size: 5rem; line-height: 1;
-      color: var(--terra); opacity: 0.2;
-      position: absolute; top: -0.25rem; left: 1rem;
+    .trial .badge { background: var(--white); color: var(--terra); margin-bottom: 12px; }
+    .trial h3 { font-size: 1.3rem; margin-bottom: 10px; }
+    .trial-price { font-family: 'Noto Serif JP', serif; font-size: clamp(2rem, 8vw, 2.6rem); font-weight: 700; line-height: 1.2; }
+    .trial-price small { font-size: .9rem; }
+    .trial .tax { color: rgba(255,255,255,.85); display: block; font-size: .85rem; margin-top: 4px; }
+    .trial ul { list-style: none; margin-top: 20px; display: inline-block; text-align: left; }
+    .trial li { font-size: .9rem; padding: 3px 0 3px 22px; position: relative; }
+    .trial li::before { content: '✓'; position: absolute; left: 0; font-weight: 700; }
+
+    .sub-head { text-align: center; font-size: 1.15rem; margin-bottom: 24px; }
+    .sub-head::before, .sub-head::after { content: '—'; color: var(--terra); margin: 0 10px; }
+    .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    .plan h3 { font-size: 1.2rem; margin-bottom: 4px; }
+    .plan-catch { font-size: .88rem; color: var(--brown-light); margin-bottom: 18px; }
+    .price-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    .price-table th {
+      font-size: .75rem; font-weight: 700; color: var(--brown-light);
+      text-align: left; padding: 8px 6px; border-bottom: 2px solid var(--beige-line);
     }
-    .testimonial-title {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.93rem; font-weight: 700;
-      color: var(--terra); margin-bottom: 0.9rem;
-      padding-top: 1.5rem;
+    .price-table td { padding: 12px 6px; border-bottom: 1px solid var(--beige-line); vertical-align: middle; }
+    .price-table td:first-child { font-weight: 700; white-space: nowrap; }
+    .price-table .tax { display: block; line-height: 1.4; }
+    .price-table td:last-child { text-align: right; white-space: nowrap; }
+    .price-table th:last-child { text-align: right; }
+    .hourly { color: var(--terra); font-weight: 700; font-size: 1.05rem; }
+    .recommend { margin-top: 20px; background: var(--beige); border-radius: var(--radius-sm); padding: 16px 18px; }
+    .alt .plan .recommend { background: var(--white); }
+    .recommend p { font-size: .8rem; font-weight: 700; color: var(--terra); margin-bottom: 4px; }
+    .package { display: grid; gap: 10px; }
+    .package-item {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      background: var(--white); border: 1px solid var(--beige-line); border-radius: var(--radius-sm);
+      padding: 14px 16px;
+    }
+    .package-item.featured { border: 2px solid var(--terra); background: var(--terra-pale); }
+    .package-name { font-weight: 700; font-size: .95rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .package-price { text-align: right; font-weight: 700; color: var(--terra); line-height: 1.4; white-space: nowrap; }
+    .package-price .tax { display: block; }
+    .spot {
+      margin-top: 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .spot h3 { font-size: 1.1rem; }
+    .spot p { font-size: .88rem; color: var(--brown-light); }
+    .spot-price { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 1.4rem; color: var(--terra); }
+    .price-notes { list-style: none; margin-top: 24px; font-size: .82rem; color: var(--brown-light); }
+    .price-notes li::before { content: '※ '; color: var(--terra); }
+
+    /* ===== Flow ===== */
+    .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; position: relative; list-style: none; }
+    .flow::before {
+      content: ''; position: absolute; top: 28px; left: 10%; right: 10%; height: 2px;
+      background: var(--beige-line);
+    }
+    .flow li { text-align: center; position: relative; }
+    .flow-num {
+      width: 56px; height: 56px; margin: 0 auto 14px; border-radius: 50%;
+      background: var(--white); border: 2px solid var(--terra); color: var(--terra);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 1.2rem;
       position: relative; z-index: 1;
     }
-    .testimonial-body {
-      font-size: 0.85rem; color: var(--brown-light);
-      line-height: 1.85; margin-bottom: 1rem;
-    }
-    .testimonial-attr {
-      font-size: 0.78rem; font-weight: 700;
-      color: var(--brown); text-align: right;
-    }
+    .flow h3 { font-size: .98rem; margin-bottom: 6px; }
+    .flow p { font-size: .82rem; color: var(--brown-light); }
 
-    /* ===== SNS ===== */
-    #sns { background: var(--beige); }
-    .sns-inner { text-align: center; }
-    .sns-links {
-      display: flex; justify-content: center; gap: 1.5rem;
-      margin-top: 2rem; flex-wrap: wrap;
+    /* ===== Voice ===== */
+    .voice-card { position: relative; padding-top: 44px; }
+    .voice-card::before {
+      content: '\201C'; position: absolute; top: 4px; left: 18px;
+      font-family: Georgia, serif; font-size: 4.5rem; line-height: 1; color: var(--terra); opacity: .3;
     }
-    .sns-btn {
-      display: flex; align-items: center; gap: 0.6rem;
-      padding: 0.9rem 2rem;
-      background: var(--white); border-radius: 999px;
-      font-weight: 700; font-size: 0.9rem; color: var(--brown);
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.2s, box-shadow 0.2s;
-      border: 1.5px solid var(--beige-deeper);
-    }
-    .sns-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow); color: var(--terra); }
-    .sns-btn i { font-size: 1.2rem; }
-    .sns-btn.instagram i { color: #E1306C; }
-    .sns-btn.threads i { color: #000; }
-    .sns-btn.note i { color: #41c9b4; }
+    .voice-title { font-size: 1rem; color: var(--terra); margin-bottom: 12px; }
+    .voice-body { font-size: .88rem; color: var(--brown-light); margin-bottom: 14px; }
+    .voice-attr { text-align: right; font-size: .82rem; font-weight: 700; }
 
-    /* ===== CONTACT ===== */
-    #contact {
-      background: linear-gradient(160deg, var(--terra) 0%, var(--terra-dark) 100%);
-      color: var(--white); text-align: center;
-    }
-    #contact .section-en { color: rgba(255,255,255,0.7); }
-    #contact .section-ja { color: var(--white); }
-    #contact .divider { background: rgba(255,255,255,0.5); }
-    .contact-desc {
-      color: rgba(255,255,255,0.85); font-size: 0.95rem;
-      margin: 1rem auto 2.5rem; max-width: 480px;
-    }
-    .contact-btns { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-    .btn-line {
-      background: #06c755; color: var(--white);
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .btn-line:hover { background: #04a846; }
-
-    /* ===== FOOTER ===== */
-    footer {
+    /* ===== Profile ===== */
+    .profile { display: grid; grid-template-columns: 260px 1fr; gap: 48px; align-items: start; }
+    .profile-photo {
+      width: 240px; height: 240px; border-radius: 50%; overflow: hidden; margin: 0 auto;
+      border: 6px solid var(--white); box-shadow: var(--shadow);
       background: var(--beige-dark);
-      border-top: 1px solid var(--beige-deeper);
-      text-align: center; padding: 1.75rem;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--beige-line); font-size: 4rem;
+      position: relative;
     }
-    footer p { font-size: 0.82rem; color: var(--terra); font-weight: 500; }
+    .profile-photo img { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+    .profile .profile-name { font-size: 1.5rem; margin: 0 0 2px; }
+    .profile-name small { font-size: .95rem; color: var(--brown-light); font-family: 'Noto Sans JP', sans-serif; font-weight: 500; }
+    .profile-role { color: var(--terra); font-weight: 700; font-size: .9rem; margin-bottom: 20px; }
+    .profile h3 { font-size: .95rem; margin: 22px 0 10px; }
+    .timeline { list-style: none; position: relative; padding-left: 4px; }
+    .timeline li { display: grid; grid-template-columns: 92px 1fr; gap: 16px; position: relative; padding-bottom: 14px; }
+    .timeline li::before {
+      content: ''; position: absolute; left: 92px; top: 9px; width: 11px; height: 11px;
+      margin-left: 2px; border-radius: 50%; background: var(--terra); z-index: 1;
+    }
+    .timeline li::after {
+      content: ''; position: absolute; left: 99px; top: 16px; bottom: -4px; width: 1px; background: var(--beige-line);
+    }
+    .timeline li:last-child::after { display: none; }
+    .tl-year { font-size: .8rem; font-weight: 700; color: var(--terra); text-align: right; padding-right: 14px; padding-top: 2px; white-space: nowrap; }
+    .tl-text { font-size: .9rem; padding-left: 16px; }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 900px) {
-      .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .service-card.featured {
-        grid-column: span 2;
-        grid-template-columns: 1fr;
-      }
-      .service-card.featured .service-header { grid-column: auto; }
-      .featured-lists { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
-      .price-card.featured { transform: none; }
-      .price-card.featured:hover { transform: translateY(-5px); }
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .results-grid { grid-template-columns: 1fr; }
-      .flow-steps {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-      .flow-steps::before { display: none; }
-      .profile-inner { grid-template-columns: 1fr; }
-      .profile-photo { max-width: 280px; margin: 0 auto; }
+    /* ===== Contact ===== */
+    .contact-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 24px; align-items: start; }
+    .form-card { padding: 12px; }
+    .form-card iframe { width: 100%; height: 1150px; border: 0; border-radius: var(--radius-sm); display: block; }
+    .form-note { font-size: .78rem; color: var(--brown-light); text-align: center; padding: 12px 8px 6px; }
+    .form-note a { color: var(--terra); text-decoration: underline; }
+    .line-card { text-align: center; position: sticky; top: calc(var(--header-h) + 20px); }
+    .line-icon { font-size: 3rem; color: var(--line-green); margin-bottom: 8px; }
+    .line-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+    .line-card p { font-size: .88rem; color: var(--brown-light); margin-bottom: 20px; }
+    .line-card .btn { width: 100%; }
+
+    /* ===== Footer ===== */
+    .footer { background: var(--beige-dark); border-top: 1px solid var(--beige-line); padding: 40px 20px 28px; text-align: center; color: var(--terra); }
+    .footer-sns { display: flex; justify-content: center; gap: 14px; margin-bottom: 18px; }
+    .footer-sns a {
+      width: 44px; height: 44px; border-radius: 50%; background: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; color: var(--terra); box-shadow: var(--shadow-sm); transition: transform .2s;
     }
-    @media (max-width: 640px) {
-      nav { padding: 0 1rem; }
-      .nav-links { display: none; }
+    .footer-sns a:hover { transform: translateY(-2px); }
+    .footer-sns .note-mark { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: .95rem; }
+    .footer-link { font-size: .82rem; text-decoration: underline; display: inline-block; margin-bottom: 10px; }
+    .footer small { display: block; font-size: .78rem; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 960px) {
       .hamburger { display: flex; }
-      section { padding: 3.5rem 1rem; }
-      .services-grid { grid-template-columns: repeat(2, 1fr); gap: 0.875rem; }
-      .service-card.featured { grid-column: span 2; }
-      .pricing-grid { grid-template-columns: 1fr; }
-      .flow-steps { grid-template-columns: 1fr; }
-      .services-row2 { grid-template-columns: 1fr; }
+      .nav {
+        position: fixed; top: var(--header-h); left: 0; right: 0;
+        flex-direction: column; align-items: stretch; gap: 0;
+        background: var(--beige); padding: 8px 20px 20px;
+        border-bottom: 1px solid var(--beige-line); box-shadow: var(--shadow);
+        transform: translateY(-110%); visibility: hidden; transition: transform .3s, visibility .3s;
+        max-height: calc(100vh - var(--header-h)); overflow-y: auto;
+      }
+      .nav.open { transform: none; visibility: visible; }
+      .nav a { font-size: .98rem; padding: 14px 4px; border-bottom: 1px solid var(--beige-line); color: var(--brown); }
+      .nav .nav-cta { margin-top: 14px; text-align: center; border-bottom: none; padding: 14px; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .works-grid { grid-template-columns: 1fr; }
+      .plans { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: 1fr; gap: 0; }
+      .flow::before { top: 28px; bottom: 28px; left: 27px; right: auto; width: 2px; height: auto; }
+      .flow li { display: grid; grid-template-columns: 56px 1fr; gap: 16px; text-align: left; padding-bottom: 22px; }
+      .flow-num { margin: 0; }
+      .flow li > div { padding-top: 6px; }
+      .profile { grid-template-columns: 1fr; gap: 28px; }
+      .profile-photo { width: 200px; height: 200px; }
+      .profile-text { max-width: 560px; margin: 0 auto; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .line-card { position: static; }
+    }
+    @media (max-width: 600px) {
+      body { font-size: 14.5px; }
+      .section { padding: 64px 16px; }
+      .hero { padding: calc(var(--header-h) + 52px) 16px 72px; }
+      .hero-btns .btn { width: 100%; max-width: 320px; }
+      .card { padding: 24px 18px; }
+      .section-head { margin-bottom: 32px; }
+      .trial { padding: 32px 20px; margin-bottom: 44px; }
+      .price-table { font-size: .85rem; }
+      .price-table td, .price-table th { padding-left: 3px; padding-right: 3px; }
+      .package-item { padding: 12px 12px; }
+      .spot { flex-direction: column; align-items: flex-start; }
+      .timeline li { grid-template-columns: 84px 1fr; gap: 12px; }
+      .timeline li::before { left: 84px; }
+      .timeline li::after { left: 91px; }
+      .tl-year { padding-right: 10px; font-size: .75rem; }
+      .tl-text { padding-left: 14px; }
+      .form-card { padding: 6px; }
+      .form-card iframe { height: 1350px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ===== NAV ===== -->
-<nav>
-  <a href="#hero" class="nav-logo">MG<span>アシスタント</span></a>
-  <ul class="nav-links">
-    <li><a href="#profile">プロフィール</a></li>
-    <li><a href="#results">実績</a></li>
-    <li><a href="#services">サービス</a></li>
-    <li><a href="#pricing">料金</a></li>
-    <li><a href="#flow">ご依頼の流れ</a></li>
-    <li><a href="#testimonials">お客様の声</a></li>
-    <li><a href="#contact" class="nav-cta">お問い合わせ</a></li>
-  </ul>
-  <button class="hamburger" id="hamburger" aria-label="メニューを開く">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+<!-- ===== 1. Header ===== -->
+<header class="header">
+  <div class="header-inner">
+    <a href="#top" class="logo">MG<span>アシスタント</span></a>
+    <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="nav">
+      <a href="#service">サービス</a>
+      <a href="#ai">AI活用</a>
+      <a href="#works">実績</a>
+      <a href="#price">料金</a>
+      <a href="#flow">ご依頼の流れ</a>
+      <a href="#profile">プロフィール</a>
+      <a href="#contact" class="nav-cta">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
 
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#profile" onclick="closeMobile()">プロフィール</a>
-  <a href="#results" onclick="closeMobile()">実績</a>
-  <a href="#services" onclick="closeMobile()">サービス</a>
-  <a href="#pricing" onclick="closeMobile()">料金</a>
-  <a href="#flow" onclick="closeMobile()">ご依頼の流れ</a>
-  <a href="#testimonials" onclick="closeMobile()">お客様の声</a>
-  <a href="#contact" class="nav-cta" onclick="closeMobile()">お問い合わせ</a>
-</div>
+<main>
 
-<!-- ===== HERO ===== -->
-<section id="hero">
-  <div class="hero-inner">
-    <div class="hero-badge fade-up">オンライン秘書サービス</div>
-    <h1 class="fade-up">あなたの業務を<em>まるっと</em>サポート</h1>
-    <p class="hero-sub fade-up">秘書・経理・営業支援・Web・建設業務まで。<br>事務経験豊富なオンライン秘書が、リモートで安心サポートします。</p>
-    <div class="hero-btns fade-up">
-      <a href="https://lin.ee/8JtYCB3N" class="btn btn-terra">
-        <i class="fa-brands fa-line" style="margin-right:0.4rem;"></i>LINEで相談する
-      </a>
-      <a href="#services" class="btn btn-outline">サービスを見る</a>
-    </div>
+<!-- ===== 2. Hero ===== -->
+<section class="hero" id="top">
+  <div class="hero-badge fade-up">オンライン秘書サービス</div>
+  <h1 class="fade-up">あなたの業務を<br><em>まるっと</em>サポート</h1>
+  <p class="fade-up">一般事務・経理・建設業事務まで。AIも活用しながら、事務経験豊富なオンライン秘書がリモートで安心サポートします。</p>
+  <div class="hero-btns fade-up">
+    <a href="https://lin.ee/VVwqroJ" target="_blank" rel="noopener noreferrer" class="btn btn-terra"><i class="fa-brands fa-line"></i>LINEで相談する</a>
+    <a href="#service" class="btn btn-outline">サービスを見る</a>
   </div>
 </section>
 
-<!-- ===== PROFILE ===== -->
-<section id="profile">
+<!-- ===== 3. Service ===== -->
+<section class="section alt" id="service">
   <div class="container">
-    <div class="section-header fade-up">
-      <span class="section-en">Profile</span>
-      <h2 class="section-ja">プロフィール</h2>
-      <div class="divider"></div>
+    <div class="section-head fade-up">
+      <span class="label">SERVICE</span>
+      <h2 class="section-title">サービス内容</h2>
+      <div class="bar"></div>
     </div>
-    <div class="profile-inner">
-      <div class="profile-photo fade-up">
-        <img src="images/about.jpg" alt="我那覇美咲" onerror="this.parentElement.innerHTML='<div class=profile-photo-placeholder>🌺</div>'">
+    <div class="grid-3">
+      <div class="card service-card fade-up">
+        <div class="icon-box"><i class="fa-solid fa-pen-to-square"></i></div>
+        <h3>一般事務</h3>
+        <ul class="check-list">
+          <li>スケジュール調整</li>
+          <li>メール対応</li>
+          <li>資料作成</li>
+          <li>各種リサーチ</li>
+          <li>顧客・営業リスト作成</li>
+          <li>名刺のデータ化</li>
+        </ul>
       </div>
-      <div class="fade-up">
-        <p class="profile-name">我那覇 美咲</p>
-        <p class="profile-name-en">Misaki Ganaha（みーみ）</p>
-        <p class="profile-desc">
-          沖縄在住のフリーランスオンライン秘書。銀行員・建設業総務・オンライン秘書として<strong>事務歴8年以上</strong>のキャリアを持ちます。<br><br>
-          建設業の現場事務経験があるため、専門用語も現場の流れもよく理解しています。グリーンサイトやCCUSなど、建設業特有の書類業務も対応可能です。もちろん、建設業以外のお客様も幅広くサポートしています。
-        </p>
-        <div class="profile-tags">
-          <span class="tag">沖縄在住</span>
-          <span class="tag">銀行員 2年</span>
-          <span class="tag">建設業総務 6年</span>
-          <span class="tag">オンライン秘書 3年目〜</span>
-          <span class="tag terra">建設業専門あり</span>
-        </div>
-        <ul class="profile-list">
-          <li>Chatwork・Slack でのやり取りに対応</li>
-          <li>秘密保持契約書（NDA）の締結に対応</li>
-          <li>クラウドサインによる電子契約</li>
-          <li>1Password で情報セキュリティを管理</li>
+      <div class="card service-card fade-up">
+        <div class="icon-box"><i class="fa-solid fa-calculator"></i></div>
+        <h3>経理業務</h3>
+        <ul class="check-list">
+          <li>記帳・仕訳入力</li>
+          <li>請求書・見積書作成</li>
+          <li>入出金確認</li>
+          <li>給与計算</li>
+          <li>税理士との連携</li>
+        </ul>
+      </div>
+      <div class="card service-card featured fade-up">
+        <span class="badge terra">専門</span>
+        <div class="icon-box"><i class="fa-solid fa-helmet-safety"></i></div>
+        <h3>建設業事務</h3>
+        <ul class="check-list">
+          <li>安全書類の作成・提出サポート</li>
+          <li>グリーンサイトの入力・管理</li>
+          <li>CCUS（建設キャリアアップシステム）登録・更新</li>
+          <li>許可申請サポート</li>
+          <li>書類整理・提出状況の確認</li>
         </ul>
       </div>
     </div>
+    <p class="note-line fade-up">上記に記載のない業務も、お気軽にご相談ください！</p>
   </div>
 </section>
 
-<!-- ===== RESULTS ===== -->
-<section id="results">
+<!-- ===== 4. AI ===== -->
+<section class="section" id="ai">
   <div class="container">
-    <div class="section-header fade-up">
-      <span class="section-en">Results</span>
-      <h2 class="section-ja">サービス実績</h2>
-      <div class="divider"></div>
-    </div>
-    <div class="results-grid">
-      <div class="result-card fade-up">
-        <div class="result-top">
-          <span class="result-industry">🏗️ 建設業・工務店</span>
-          <span class="result-status active">継続中</span>
-        </div>
-        <p class="result-period">サポート期間：<strong style="color:var(--terra);">3年以上</strong></p>
-        <div class="result-tags">
-          <span class="result-tag">記帳代行</span>
-          <span class="result-tag">給与計算</span>
-          <span class="result-tag">安全書類</span>
-          <span class="result-tag">見積書</span>
-          <span class="result-tag">秘書業務</span>
-        </div>
-        <div class="result-block">
-          <p class="result-label">課題</p>
-          <p class="result-text">起業間もないタイミングで経理体制が未整備。帳簿や数字の管理が十分にできていない状態でした。</p>
-        </div>
-        <div class="result-block">
-          <p class="result-label">成果</p>
-          <p class="result-text">経理業務を一から整備し、税理士連携も代行。建設業特有の事務から秘書業務まで幅広くサポート。社長が本業に集中できる環境を実現。</p>
-        </div>
-        <div class="result-highlight">サポート<span style="color:var(--terra);">3年以上</span>・継続中</div>
-      </div>
-
-      <div class="result-card fade-up">
-        <div class="result-top">
-          <span class="result-industry">⚡ 電気工事業</span>
-          <span class="result-status active">継続中</span>
-        </div>
-        <p class="result-period">サポート期間：<strong style="color:var(--terra);">継続中</strong></p>
-        <div class="result-tags">
-          <span class="result-tag">安全書類</span>
-          <span class="result-tag">グリーンサイト</span>
-          <span class="result-tag">CCUS</span>
-          <span class="result-tag">記帳代行</span>
-          <span class="result-tag">給与計算</span>
-        </div>
-        <div class="result-block">
-          <p class="result-label">課題</p>
-          <p class="result-text">事務員がおらず、社長自身が安全書類・経理・給与計算をすべて対応。本業に集中できない状態でした。</p>
-        </div>
-        <div class="result-block">
-          <p class="result-label">成果</p>
-          <p class="result-text">建設業特有の事務・経理業務を丸ごと代行。社長の事務作業を月約10時間削減し、現場・営業に集中できる環境を実現。</p>
-        </div>
-        <div class="result-highlight">月約<span style="color:var(--terra);">10時間</span>削減</div>
-      </div>
-
-      <div class="result-card fade-up">
-        <div class="result-top">
-          <span class="result-industry">🏥 訪問歯科医院</span>
-          <span class="result-status">サポート期間：約3年</span>
-        </div>
-        <div class="result-tags">
-          <span class="result-tag">請求書作成</span>
-          <span class="result-tag">入金管理</span>
-          <span class="result-tag">請求業務全般</span>
-        </div>
-        <div class="result-block">
-          <p class="result-label">課題</p>
-          <p class="result-text">院長先生が毎月100件以上の請求書作成・入金管理を自身で対応。診療や事業運営に十分な時間を確保できない状況でした。</p>
-        </div>
-        <div class="result-block">
-          <p class="result-label">成果</p>
-          <p class="result-text">請求書作成から入金管理まで一連の業務を代行。院長先生が診療・事業運営に集中できる環境を実現。</p>
-        </div>
-        <div class="result-highlight">月<span style="color:var(--terra);">100件以上</span>の請求書を代行</div>
-      </div>
-
-      <div class="result-card fade-up">
-        <div class="result-top">
-          <span class="result-industry">💼 オンライン秘書チーム</span>
-          <span class="result-status active">継続中</span>
-        </div>
-        <p class="result-period">サポート期間：<strong style="color:var(--terra);">継続中</strong></p>
-        <div class="result-tags">
-          <span class="result-tag">記帳代行</span>
-          <span class="result-tag">請求書管理</span>
-          <span class="result-tag">営業リスト作成</span>
-          <span class="result-tag">メール代行</span>
-          <span class="result-tag">リサーチ</span>
-        </div>
-        <div class="result-block">
-          <p class="result-label">課題</p>
-          <p class="result-text">チームリーダーが経理・事務作業に時間を取られ、営業・マネジメントに集中できない状況でした。</p>
-        </div>
-        <div class="result-block">
-          <p class="result-label">成果</p>
-          <p class="result-text">経理・バックオフィス業務を一括代行。リーダーが本来注力すべき営業・チーム運営に集中できる体制を整備。</p>
-        </div>
-        <div class="result-highlight">バックオフィス業務を<span style="color:var(--terra);">丸ごと代行</span></div>
-      </div>
-
-      <div class="result-card fade-up">
-        <div class="result-top">
-          <span class="result-industry">🏗️ 建築業</span>
-          <span class="result-status">サポート終了</span>
-        </div>
-        <p class="result-period">サポート期間：継続サポート後終了</p>
-        <div class="result-tags">
-          <span class="result-tag">記帳代行</span>
-          <span class="result-tag">請求書管理</span>
-          <span class="result-tag">入金管理</span>
-          <span class="result-tag">Lark導入</span>
-          <span class="result-tag">メール対応</span>
-        </div>
-        <div class="result-block">
-          <p class="result-label">課題</p>
-          <p class="result-text">起業1年目で請求書・入金管理の運用ルールが未整備。請求漏れ・対応漏れのリスクがある状態でした。</p>
-        </div>
-        <div class="result-block">
-          <p class="result-label">成果</p>
-          <p class="result-text">Larkを導入し、入金管理・タスク管理・工事進捗を一元化。請求漏れを防げる業務フローを構築。</p>
-        </div>
-        <div class="result-highlight"><span style="color:var(--terra);">Lark導入</span>で業務を一元管理</div>
+    <div class="section-head fade-up">
+      <span class="label">AI</span>
+      <h2 class="section-title">AIを活用し、<br>事務作業をもっとスムーズに。</h2>
+      <div class="bar"></div>
+      <p class="lead">Claude・ChatGPT・Gemini・NotebookLMなどの生成AIを日々の業務に取り入れ、スピードと正確さの両立を目指しています。</p>
+      <div class="ai-tools">
+        <span class="tag">Claude</span>
+        <span class="tag">ChatGPT</span>
+        <span class="tag">Gemini</span>
+        <span class="tag">NotebookLM</span>
       </div>
     </div>
+    <div class="grid-3">
+      <div class="card ai-card fade-up">
+        <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
+        <h3>AIで効率化</h3>
+        <p>文章作成や情報整理など、AIが得意な作業はAIに任せて、時間を短縮します。</p>
+      </div>
+      <div class="card ai-card fade-up">
+        <div class="icon-box"><i class="fa-solid fa-user-check"></i></div>
+        <h3>人の目で仕上げる</h3>
+        <p>内容の確認・調整・最終チェックは必ず人が行い、正確さと細やかな配慮を大切にしています。</p>
+      </div>
+      <div class="card ai-card fade-up">
+        <div class="icon-box"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+        <h3>自分でも使いこなす</h3>
+        <p>このホームページや日々の業務の仕組みづくりにもAIを活用。できること・できないことを実際に使って理解しています。</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <div class="results-note fade-up">
+<!-- ===== 5. Works ===== -->
+<section class="section alt" id="works">
+  <div class="container">
+    <div class="section-head fade-up">
+      <span class="label">WORKS</span>
+      <h2 class="section-title">サービス実績</h2>
+      <div class="bar"></div>
+    </div>
+    <div class="works-grid">
+      <article class="card work-card fade-up">
+        <div class="work-top">
+          <span class="work-industry">🏗️ 建設業・工務店</span>
+          <span class="badge terra">継続中</span>
+        </div>
+        <div class="tags">
+          <span class="tag">記帳代行</span><span class="tag">給与計算</span><span class="tag">安全書類</span><span class="tag">見積書</span><span class="tag">秘書業務</span>
+        </div>
+        <div class="work-block">
+          <p class="work-label">課題</p>
+          <p class="work-text">起業間もないタイミングで経理体制が未整備。帳簿や数字の管理が十分にできていない状態でした。</p>
+        </div>
+        <div class="work-block">
+          <p class="work-label">成果</p>
+          <p class="work-text">経理業務を一から整備し、税理士連携も代行。建設業特有の事務から秘書業務まで幅広くサポート。社長が本業に集中できる環境を実現。</p>
+        </div>
+        <p class="work-highlight">サポート<span class="em">3年以上</span>・継続中</p>
+      </article>
+
+      <article class="card work-card fade-up">
+        <div class="work-top">
+          <span class="work-industry">⚡ 電気工事業</span>
+          <span class="badge terra">継続中</span>
+        </div>
+        <div class="tags">
+          <span class="tag">安全書類</span><span class="tag">グリーンサイト</span><span class="tag">CCUS</span><span class="tag">記帳代行</span><span class="tag">給与計算</span>
+        </div>
+        <div class="work-block">
+          <p class="work-label">課題</p>
+          <p class="work-text">事務員がおらず、社長自身が安全書類・経理・給与計算をすべて対応。本業に集中できない状態でした。</p>
+        </div>
+        <div class="work-block">
+          <p class="work-label">成果</p>
+          <p class="work-text">建設業特有の事務・経理業務を丸ごと代行。社長の事務作業を月約10時間削減し、現場・営業に集中できる環境を実現。</p>
+        </div>
+        <p class="work-highlight">月約<span class="em">10時間</span>削減</p>
+      </article>
+
+      <article class="card work-card fade-up">
+        <div class="work-top">
+          <span class="work-industry">🏥 訪問歯科医院</span>
+          <span class="badge">サポート期間 約3年</span>
+        </div>
+        <div class="tags">
+          <span class="tag">請求書作成</span><span class="tag">入金管理</span><span class="tag">請求業務全般</span>
+        </div>
+        <div class="work-block">
+          <p class="work-label">課題</p>
+          <p class="work-text">院長先生が毎月100件以上の請求書作成・入金管理を自身で対応。診療や事業運営に十分な時間を確保できない状況でした。</p>
+        </div>
+        <div class="work-block">
+          <p class="work-label">成果</p>
+          <p class="work-text">請求書作成から入金管理まで一連の業務を代行。院長先生が診療・事業運営に集中できる環境を実現。</p>
+        </div>
+        <p class="work-highlight">月<span class="em">100件以上</span>の請求書を代行</p>
+      </article>
+
+      <article class="card work-card fade-up">
+        <div class="work-top">
+          <span class="work-industry">💼 オンライン秘書チーム</span>
+          <span class="badge terra">継続中</span>
+        </div>
+        <div class="tags">
+          <span class="tag">記帳代行</span><span class="tag">請求書管理</span><span class="tag">営業リスト作成</span><span class="tag">メール代行</span><span class="tag">リサーチ</span>
+        </div>
+        <div class="work-block">
+          <p class="work-label">課題</p>
+          <p class="work-text">チームリーダーが経理・事務作業に時間を取られ、営業・マネジメントに集中できない状況でした。</p>
+        </div>
+        <div class="work-block">
+          <p class="work-label">成果</p>
+          <p class="work-text">経理・バックオフィス業務を一括代行。リーダーが営業・チーム運営に集中できる体制を整備。</p>
+        </div>
+        <p class="work-highlight">バックオフィス業務を<span class="em">丸ごと</span>代行</p>
+      </article>
+
+      <article class="card work-card fade-up">
+        <div class="work-top">
+          <span class="work-industry">🏗️ 建築業</span>
+          <span class="badge">サポート終了</span>
+        </div>
+        <div class="tags">
+          <span class="tag">記帳代行</span><span class="tag">請求書管理</span><span class="tag">入金管理</span><span class="tag">Lark導入</span><span class="tag">メール対応</span>
+        </div>
+        <div class="work-block">
+          <p class="work-label">課題</p>
+          <p class="work-text">起業1年目で請求書・入金管理の運用ルールが未整備。請求漏れ・対応漏れのリスクがある状態でした。</p>
+        </div>
+        <div class="work-block">
+          <p class="work-label">成果</p>
+          <p class="work-text">Larkを導入し、入金管理・タスク管理・工事進捗を一元化。請求漏れを防げる業務フローを構築。</p>
+        </div>
+        <p class="work-highlight"><span class="em">Lark導入</span>で業務を一元管理</p>
+      </article>
+    </div>
+
+    <div class="center-cta fade-up">
       <p>業種別の詳しい実績はnoteで公開中です📝</p>
       <a href="https://note.com/m_ganaha" target="_blank" rel="noopener noreferrer" class="btn btn-terra">noteで実績を見る</a>
     </div>
   </div>
 </section>
 
-<!-- ===== SERVICES ===== -->
-<section id="services">
+<!-- ===== 6. Price ===== -->
+<section class="section" id="price">
   <div class="container">
-    <div class="section-header fade-up">
-      <span class="section-en">Services</span>
-      <h2 class="section-ja">サービス内容</h2>
-      <div class="divider"></div>
+    <div class="section-head fade-up">
+      <span class="label">PRICE</span>
+      <h2 class="section-title">料金</h2>
+      <div class="bar"></div>
+      <p class="lead">まずは1ヶ月のトライアルで作業量を確認し、2ヶ月目からご依頼内容に合ったプランをご提案します。</p>
     </div>
 
-    <!-- 4カラム -->
-    <div class="services-grid">
-      <div class="service-card fade-up">
-        <div class="service-icon"><i class="fa-solid fa-pen-nib"></i></div>
-        <h3>秘書業務</h3>
-        <ul>
-          <li>スケジュール調整</li>
-          <li>メール代理対応</li>
-          <li>情報リサーチ</li>
-          <li>文字起こし</li>
-          <li>出張・会食の手配</li>
-        </ul>
-      </div>
-      <div class="service-card fade-up">
-        <div class="service-icon"><i class="fa-solid fa-coins"></i></div>
-        <h3>経理業務</h3>
-        <ul>
-          <li>請求書の作成</li>
-          <li>見積書の作成</li>
-          <li>入金確認</li>
-          <li>領収書の発行</li>
-          <li>記帳代行</li>
-        </ul>
-      </div>
-      <div class="service-card fade-up">
-        <div class="service-icon"><i class="fa-solid fa-briefcase"></i></div>
-        <h3>営業支援</h3>
-        <ul>
-          <li>各種資料作成</li>
-          <li>顧客リサーチ</li>
-          <li>顧客リスト作成</li>
-          <li>名刺のデータ化</li>
-          <li>各種データ入力</li>
-        </ul>
-      </div>
-      <div class="service-card fade-up">
-        <div class="service-icon"><i class="fa-solid fa-laptop"></i></div>
-        <h3>Web業務</h3>
-        <ul>
-          <li>SNS運用代行</li>
-          <li>Webサイト更新</li>
-          <li>ブログ記事のUP</li>
-          <li>メルマガ配信</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- 建設業カード（横幅全体） -->
-    <div style="margin-top:1.25rem;">
-      <div class="service-card featured fade-up">
-        <div class="service-header">
-          <span class="featured-badge">建設業・工務店専門</span>
-          <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem;">
-            <div class="service-icon" style="margin-bottom:0;flex-shrink:0;">
-              <i class="fa-solid fa-helmet-safety"></i>
-            </div>
-            <h3 style="margin-bottom:0;">建設業・工務店専門サービス</h3>
-          </div>
-          <p style="font-size:0.85rem;color:var(--brown-light);margin-bottom:1rem;">
-            現場の流れと専門用語を熟知。建設業特有の書類業務を丸ごとサポートします。
-          </p>
-        </div>
-        <div class="featured-lists">
-          <ul>
-            <li>グリーンサイト（安全書類）入力・管理</li>
-            <li>CCUS（建設キャリアアップシステム）登録・更新</li>
-            <li>JV（共同企業体）書類対応</li>
-          </ul>
-          <ul>
-            <li>許可申請サポート</li>
-            <li>工事台帳・原価管理</li>
-            <li>各種契約書・書類作成</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="service-note fade-up">
-      <strong>上記に記載のない業務</strong>に関しましても、お気軽にご相談ください！
-    </div>
-  </div>
-</section>
-
-<!-- ===== PRICING ===== -->
-<section id="pricing">
-  <div class="container">
-    <div class="section-header fade-up">
-      <span class="section-en">Pricing</span>
-      <h2 class="section-ja">料金プラン</h2>
-      <div class="divider"></div>
-    </div>
-
-    <!-- お試しプラン -->
-    <div class="trial-wrap fade-up">
-      <div class="price-card trial">
-        <span class="trial-badge">まずはここから</span>
-        <p class="price-plan">お試しプラン</p>
-        <div class="price-hours">10<span>時間</span></div>
-        <div class="price-amount">¥22,000</div>
-        <div class="price-tax">税込 ・ @2,200円/h</div>
-        <div class="price-per">月払いのみ・一括なし</div>
-      </div>
-    </div>
-
-    <!-- 月額プラン -->
-    <p class="pricing-sub fade-up">月額プラン<span>（月払い ・ 6ヶ月一括）</span></p>
-    <div class="pricing-grid">
-      <div class="price-card fade-up">
-        <p class="price-plan">プロプラン</p>
-        <div class="price-hours">30<span>時間/月</span></div>
-        <div class="price-row">
-          <span class="price-row-label">月払い</span>
-          <span class="price-row-value">¥82,500<small>/月（税込）</small></span>
-        </div>
-        <div class="price-row lump">
-          <span class="price-row-label">6ヶ月一括 <span class="off-badge">10%OFF</span></span>
-          <span class="price-row-strike">¥495,000</span>
-          <span class="price-row-value terra">¥445,500<small>（税込）</small></span>
-        </div>
-      </div>
-      <div class="price-card featured fade-up">
-        <span class="trial-badge">★ おすすめ</span>
-        <p class="price-plan">スタンダードプラン</p>
-        <div class="price-hours">20<span>時間/月</span></div>
-        <div class="price-row">
-          <span class="price-row-label">月払い</span>
-          <span class="price-row-value">¥55,000<small>/月（税込）</small></span>
-        </div>
-        <div class="price-row lump">
-          <span class="price-row-label">6ヶ月一括 <span class="off-badge">10%OFF</span></span>
-          <span class="price-row-strike">¥330,000</span>
-          <span class="price-row-value terra">¥297,000<small>（税込）</small></span>
-        </div>
-      </div>
-      <div class="price-card fade-up">
-        <p class="price-plan">ライトプラン</p>
-        <div class="price-hours">10<span>時間/月</span></div>
-        <div class="price-row">
-          <span class="price-row-label">月払い</span>
-          <span class="price-row-value">¥33,000<small>/月（税込）</small></span>
-        </div>
-        <div class="price-row lump">
-          <span class="price-row-label">6ヶ月一括 <span class="off-badge">5%OFF</span></span>
-          <span class="price-row-strike">¥198,000</span>
-          <span class="price-row-value terra">¥188,100<small>（税込）</small></span>
-        </div>
-      </div>
-    </div>
-
-    <div class="pricing-notes fade-up">
+    <div class="trial fade-up">
+      <span class="badge">初回1ヶ月限定</span>
+      <h3>トライアルプラン</h3>
+      <p class="trial-price">30,000円<small>／月</small></p>
+      <span class="tax">（税込33,000円）</span>
       <ul>
-        <li>スポットでのご対応も可能です（1時間3,000円）。</li>
-        <li>前払いでのお支払いをお願いしています。</li>
-        <li>時間が超えそうな場合は事前にご相談します。</li>
-        <li><strong>まとめてご契約いただくほどお得</strong>になります。</li>
+        <li>初めてオンライン秘書を利用する方向け</li>
+        <li>2ヶ月目以降は作業量をもとに最適なプランをご提案</li>
       </ul>
     </div>
+
+    <h3 class="sub-head fade-up">2ヶ月目以降のプラン</h3>
+    <div class="plans">
+      <div class="card plan fade-up">
+        <h3>時間制プラン</h3>
+        <p class="plan-catch">契約時間内で、色々な業務をまとめてお任せいただけます</p>
+        <table class="price-table">
+          <thead>
+            <tr><th>時間</th><th>月額料金</th><th>時給換算</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>10時間</td><td>28,000円<span class="tax">（税込30,800円）</span></td><td><span class="hourly">2,800円</span></td></tr>
+            <tr><td>20時間</td><td>54,000円<span class="tax">（税込59,400円）</span></td><td><span class="hourly">2,700円</span></td></tr>
+            <tr><td>30時間</td><td>78,000円<span class="tax">（税込85,800円）</span></td><td><span class="hourly">2,600円</span></td></tr>
+            <tr><td>40時間</td><td>100,000円<span class="tax">（税込110,000円）</span></td><td><span class="hourly">2,500円</span></td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:.8rem;color:var(--terra);font-weight:700;margin-top:10px;text-align:right;">時間が多いほど1時間あたりがお得！</p>
+        <div class="recommend">
+          <p>こんな方におすすめ</p>
+          <ul class="check-list">
+            <li>業務ジャンルを問わず、色々お願いしたい</li>
+            <li>依頼したい内容がまだはっきり決まっていない</li>
+            <li>相談しながら進めたい</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card plan fade-up">
+        <h3>業務パッケージプラン</h3>
+        <p class="plan-catch">任せたい業務が決まっている方に</p>
+        <div class="package">
+          <div class="package-item">
+            <span class="package-name">一般事務</span>
+            <span class="package-price">50,000円〜／月<span class="tax">（税込55,000円〜）</span></span>
+          </div>
+          <div class="package-item">
+            <span class="package-name">経理業務</span>
+            <span class="package-price">50,000円〜／月<span class="tax">（税込55,000円〜）</span></span>
+          </div>
+          <div class="package-item featured">
+            <span class="package-name">建設業事務 <span class="badge terra">専門</span></span>
+            <span class="package-price">80,000円〜／月<span class="tax">（税込88,000円〜）</span></span>
+          </div>
+        </div>
+        <div class="recommend">
+          <p>こんな方におすすめ</p>
+          <ul class="check-list">
+            <li>任せたい業務がはっきり決まっている</li>
+            <li>経理や建設業事務など、特定の業務をまとめて任せたい</li>
+            <li>毎月決まった業務を継続して任せたい</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card spot fade-up">
+      <div>
+        <h3>スポット対応</h3>
+        <p>単発のご依頼や、繁忙期だけのサポートに</p>
+      </div>
+      <p class="spot-price">3,000円<small style="font-size:.85rem;">／時間</small> <span class="tax">（税込3,300円）</span></p>
+    </div>
+
+    <ul class="price-notes fade-up">
+      <li>表示価格はすべて税抜です</li>
+      <li>業務パッケージプランは、業務量に応じてお見積りします</li>
+      <li>前払いでのお支払いをお願いしています</li>
+    </ul>
   </div>
 </section>
 
-<!-- ===== FLOW ===== -->
-<section id="flow">
+<!-- ===== 7. Flow ===== -->
+<section class="section alt" id="flow">
   <div class="container">
-    <div class="section-header fade-up">
-      <span class="section-en">Flow</span>
-      <h2 class="section-ja">ご依頼の流れ</h2>
-      <div class="divider"></div>
+    <div class="section-head fade-up">
+      <span class="label">FLOW</span>
+      <h2 class="section-title">ご依頼の流れ</h2>
+      <div class="bar"></div>
     </div>
-    <div class="flow-steps">
-      <div class="flow-step fade-up">
-        <div class="flow-num">1</div>
-        <h3>お問い合わせ</h3>
-        <p>LINEまたは<br>フォームから</p>
-      </div>
-      <div class="flow-step fade-up">
-        <div class="flow-num">2</div>
-        <h3>ヒアリング・<br>お見積もり</h3>
-        <p>ご要望を<br>丁寧にお伺い</p>
-      </div>
-      <div class="flow-step fade-up">
-        <div class="flow-num">3</div>
-        <h3>ご契約・<br>お支払い</h3>
-        <p>クラウドサイン<br>で電子契約</p>
-      </div>
-      <div class="flow-step fade-up">
-        <div class="flow-num">4</div>
-        <h3>業務スタート</h3>
-        <p>Chatwork・<br>Slackで連携</p>
-      </div>
-      <div class="flow-step fade-up">
-        <div class="flow-num">5</div>
-        <h3>納品・<br>完了報告</h3>
-        <p>丁寧に<br>ご報告します</p>
-      </div>
-    </div>
+    <ol class="flow">
+      <li class="fade-up"><span class="flow-num">1</span><div><h3>お問い合わせ</h3><p>LINEまたはフォームからお気軽にご連絡ください</p></div></li>
+      <li class="fade-up"><span class="flow-num">2</span><div><h3>ヒアリング</h3><p>業務内容やお困りごとをお伺いします</p></div></li>
+      <li class="fade-up"><span class="flow-num">3</span><div><h3>トライアル開始</h3><p>1ヶ月間、実際に業務をお任せいただきます</p></div></li>
+      <li class="fade-up"><span class="flow-num">4</span><div><h3>プランのご提案</h3><p>作業量をもとに2ヶ月目以降のプランをご提案します</p></div></li>
+      <li class="fade-up"><span class="flow-num">5</span><div><h3>継続サポート</h3><p>本格的にサポートを開始します</p></div></li>
+    </ol>
   </div>
 </section>
 
-<!-- ===== TESTIMONIALS ===== -->
-<section id="testimonials">
+<!-- ===== 8. Voice ===== -->
+<section class="section" id="voice">
   <div class="container">
-    <div class="section-header fade-up">
-      <span class="section-en">Voice</span>
-      <h2 class="section-ja">お客様の声</h2>
-      <div class="divider"></div>
+    <div class="section-head fade-up">
+      <span class="label">VOICE</span>
+      <h2 class="section-title">お客様の声</h2>
+      <div class="bar"></div>
     </div>
-    <div class="testimonials-grid">
-      <div class="testimonial-card fade-up">
-        <p class="testimonial-title">「みーみさんに出会えたことが、今年1番の出来事です」</p>
-        <p class="testimonial-body">いつも本当に助かっています。当初は遠慮していましたが、「雑に扱ってください」と言われた瞬間からマインドブロックが外れて、どんどん頼みやすくなりました。タスクをバンバンこなしてくれる姿に驚きと感動の連続でした。仕訳についても本当に助かりました。たくさんの秘書がいる中で出会えたことは奇跡だと思っています。</p>
-        <p class="testimonial-attr">工務店社長M様</p>
+    <div class="grid-3">
+      <div class="card voice-card fade-up">
+        <h3 class="voice-title">「みーみさんに出会えたことが、今年1番の出来事です」</h3>
+        <p class="voice-body">いつも本当に助かっています。当初は遠慮していましたが、「雑に扱ってください」と言われた瞬間からマインドブロックが外れて、どんどん頼みやすくなりました。タスクをバンバンこなしてくれる姿に驚きと感動の連続でした。仕訳についても本当に助かりました。たくさんの秘書がいる中で出会えたことは奇跡だと思っています。</p>
+        <p class="voice-attr">工務店社長M様</p>
       </div>
-      <div class="testimonial-card fade-up">
-        <p class="testimonial-title">「信頼感抜群。苦手は得意な人に任せる大切さを実感しました」</p>
-        <p class="testimonial-body">初めての依頼でドキドキでしたが、着手予定日をサクッと伝えてもらえるだけで安心感が全然違いました。データ抽出も自分より正確に把握してもらえて、プロに任せることの大切さを改めて感じました。産休中にも関わらず早々に戻ってきてくれてありがとうございました。</p>
-        <p class="testimonial-attr">訪問歯科医N様</p>
+      <div class="card voice-card fade-up">
+        <h3 class="voice-title">「信頼感抜群。苦手は得意な人に任せる大切さを実感しました」</h3>
+        <p class="voice-body">初めての依頼でドキドキでしたが、着手予定日をサクッと伝えてもらえるだけで安心感が全然違いました。データ抽出も自分より正確に把握してもらえて、プロに任せることの大切さを改めて感じました。産休中にも関わらず早々に戻ってきてくれてありがとうございました。</p>
+        <p class="voice-attr">訪問歯科医N様</p>
       </div>
-      <div class="testimonial-card fade-up">
-        <p class="testimonial-title">「価格以上の満足感。心に余裕が持てた期間でした」</p>
-        <p class="testimonial-body">仕事量は多くなかったかもしれませんが、事務処理をお任せできたことで、私にとってとても心に余裕が持てた期間となりました。価格以上に満足しています。</p>
-        <p class="testimonial-attr">電気工事士H様</p>
+      <div class="card voice-card fade-up">
+        <h3 class="voice-title">「価格以上の満足感。心に余裕が持てた期間でした」</h3>
+        <p class="voice-body">仕事量は多くなかったかもしれませんが、事務処理をお任せできたことで、私にとってとても心に余裕が持てた期間となりました。価格以上に満足しています。</p>
+        <p class="voice-attr">電気工事士H様</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== SNS ===== -->
-<section id="sns">
+<!-- ===== 9. Profile ===== -->
+<section class="section alt" id="profile">
   <div class="container">
-    <div class="sns-inner fade-up">
-      <span class="section-en">SNS</span>
-      <h2 class="section-ja" style="margin-top:0.5rem;">SNS・日々の発信</h2>
-      <div class="divider"></div>
-      <p style="margin-top:1.5rem;font-size:0.9rem;color:var(--brown-light);">Instagramでは日々の気づきやお仕事情報を発信しています。</p>
-      <div class="sns-links">
-        <a href="https://www.instagram.com/mg_assistant" target="_blank" rel="noopener noreferrer" class="sns-btn instagram">
-          <i class="fa-brands fa-instagram"></i> Instagram
-        </a>
-        <a href="https://www.threads.net/@mg_assistant" target="_blank" rel="noopener noreferrer" class="sns-btn threads">
-          <i class="fa-brands fa-threads"></i> Threads
-        </a>
-        <a href="https://note.com/m_ganaha" target="_blank" rel="noopener noreferrer" class="sns-btn note">
-          <i class="fa-solid fa-note-sticky"></i> note
-        </a>
+    <div class="section-head fade-up">
+      <span class="label">PROFILE</span>
+      <h2 class="section-title">プロフィール</h2>
+      <div class="bar"></div>
+    </div>
+    <div class="profile">
+      <div class="fade-up">
+        <!-- ▼▼ 差し替え箇所：プロフィール写真（images/profile.jpg を差し替えてください。正方形に近い写真がおすすめ） ▼▼ -->
+        <div class="profile-photo">
+          <img src="images/profile.jpg" alt="我那覇 美咲（みーみ）" onerror="this.remove()">
+          <i class="fa-solid fa-user" aria-hidden="true"></i>
+        </div>
+        <!-- ▲▲ 差し替え箇所ここまで ▲▲ -->
+      </div>
+      <div class="profile-text fade-up">
+        <h3 class="profile-name">我那覇 美咲 <small>（みーみ）</small></h3>
+        <p class="profile-role">MGアシスタント 代表／オンライン秘書</p>
+
+        <h3>対応してきた業種</h3>
+        <div class="tags">
+          <span class="tag">建設業・工務店</span><span class="tag">医療</span><span class="tag">電気工事</span><span class="tag">オンライン秘書チーム</span>
+        </div>
+
+        <h3>経歴</h3>
+        <ul class="timeline">
+          <li><span class="tl-year">前職</span><span class="tl-text">銀行員として2年勤務</span></li>
+          <li><span class="tl-year">前職</span><span class="tl-text">建設業の事務として6年勤務</span></li>
+          <li><span class="tl-year">2023年3月</span><span class="tl-text">オンライン秘書として活動開始</span></li>
+          <li><span class="tl-year">2023年7月</span><span class="tl-text">オンライン秘書を本業に</span></li>
+          <li><span class="tl-year">現在</span><span class="tl-text">複数の事業者様と継続契約中</span></li>
+        </ul>
+
+        <ul class="check-list" style="margin-top:12px;">
+          <li>沖縄在住</li>
+          <li>建設業の専門用語と現場の流れがわかる</li>
+          <li>経理から建設業事務まで一括対応</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== CONTACT ===== -->
-<section id="contact">
+<!-- ===== 10. Contact ===== -->
+<section class="section" id="contact">
   <div class="container">
-    <div class="section-header fade-up">
-      <span class="section-en">Contact</span>
-      <h2 class="section-ja">お問い合わせ</h2>
-      <div class="divider"></div>
+    <div class="section-head fade-up">
+      <span class="label">CONTACT</span>
+      <h2 class="section-title">まずはお気軽にご相談ください</h2>
+      <div class="bar"></div>
+      <p class="lead">かしこまらなくて大丈夫です。「業種」と「任せたいこと」だけでもお送りください。</p>
     </div>
-    <p class="contact-desc fade-up">業務内容や量についてご不明な点もお気軽にどうぞ。<br>まずはお気軽にご相談ください。</p>
-    <div class="contact-btns fade-up">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1JShKZbtyo63vQQn2GRA-fv3LPtvEAplFG8xV15kv3ZfCVQ/viewform" target="_blank" rel="noopener noreferrer" class="btn btn-white">
-        <i class="fa-solid fa-envelope" style="margin-right:0.4rem;"></i>お問い合わせフォーム
-      </a>
-      <a href="https://lin.ee/8JtYCB3N" class="btn btn-line">
-        <i class="fa-brands fa-line" style="margin-right:0.4rem;"></i>LINEで相談する
-      </a>
+    <div class="contact-grid">
+      <div class="card form-card fade-up">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc1JShKZbtyo63vQQn2GRA-fv3LPtvEAplFG8xV15kv3ZfCVQ/viewform?embedded=true" title="お問い合わせフォーム" loading="lazy">読み込んでいます…</iframe>
+        <p class="form-note">送信いただいた情報は、<a href="privacy.html">プライバシーポリシー</a>に基づき適切に取り扱います。</p>
+      </div>
+      <div class="card line-card fade-up">
+        <div class="line-icon"><i class="fa-brands fa-line"></i></div>
+        <h3>LINEでサクッと相談</h3>
+        <p>「ちょっと聞きたい」も気軽にどうぞ。友だち追加でいつでもメッセージできます。</p>
+        <a href="https://lin.ee/VVwqroJ" target="_blank" rel="noopener noreferrer" class="btn btn-line"><i class="fa-brands fa-line"></i>友だち追加</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
-<footer>
-  <p>© 2025 MGアシスタント</p>
+</main>
+
+<!-- ===== 11. Footer ===== -->
+<footer class="footer">
+  <div class="footer-sns">
+    <a href="https://www.instagram.com/mg_assistant" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://www.threads.net/@mg_assistant" target="_blank" rel="noopener noreferrer" aria-label="Threads"><i class="fa-brands fa-threads"></i></a>
+    <a href="https://note.com/m_ganaha" target="_blank" rel="noopener noreferrer" aria-label="note"><span class="note-mark">note</span></a>
+  </div>
+  <a href="privacy.html" class="footer-link">プライバシーポリシー</a>
+  <small>© 2026 MGアシスタント</small>
 </footer>
 
 <script>
-  // ===== Hamburger =====
   const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-  function closeMobile() { mobileMenu.classList.remove('open'); }
+  const nav = document.getElementById('nav');
+  function setMenu(open) {
+    nav.classList.toggle('open', open);
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open);
+  }
+  hamburger.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
-  // ===== Smooth scroll with nav offset =====
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        window.scrollTo({ top: target.offsetTop - 64, behavior: 'smooth' });
-      }
-    });
-  });
-
-  // ===== Scroll fade-up animation =====
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  const targets = document.querySelectorAll('.fade-up');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    targets.forEach(el => io.observe(el));
+  } else {
+    targets.forEach(el => el.classList.add('visible'));
+  }
 </script>
 </body>
 </html>
